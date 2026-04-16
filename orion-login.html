@@ -489,7 +489,7 @@ select.ig-field{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://ww
 
 <script>
 function toggleTheme(){const h=document.documentElement;const l=h.dataset.theme==='light';h.dataset.theme=l?'dark':'light';document.getElementById('themeBtn').textContent=l?'🌙':'☀️';}
-function goBack(){window.location.href='orion-sports-arena.html';}
+function goBack(){window.location.href='index.html';}
 function toast(msg,dur=3000){const el=document.getElementById('toastEl');el.textContent=msg;el.classList.add('on');clearTimeout(el._t);el._t=setTimeout(()=>el.classList.remove('on'),dur);}
 function switchTab(t){['login','signup'].forEach(n=>{document.getElementById('tab-'+n).classList.toggle('on',n===t);document.getElementById('view-'+n).style.display=n===t?'block':'none';});document.getElementById('tabBar').style.display='flex';document.getElementById('forgotView').classList.remove('on');document.getElementById('successView').classList.remove('on');if(t==='signup')gostep(1,true);}
 function eyeToggle(id,btn){const inp=document.getElementById(id);inp.type=inp.type==='text'?'password':'text';btn.textContent=inp.type==='text'?'🙈':'👁️';}
