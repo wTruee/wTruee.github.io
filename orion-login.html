@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ORION Sports Arena — Login & Sign Up</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;500;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --gold:#F5A623;--gold-d:#C97D0E;
+  --gf:rgba(245,166,35,.08);
+  --bg:#060606;--bg2:#0D0D0D;--bg3:#141414;--bg4:#1C1C1C;
+  --b:rgba(245,166,35,.14);--b2:rgba(255,255,255,.07);--b3:rgba(255,255,255,.04);
+  --t:#F0F0F0;--t2:#888;--t3:#444;
+  --green:#22C55E;--red:#EF4444;
+  --r:14px;--rs:10px;
+  --tr:all .28s cubic-bezier(.4,0,.2,1);
+}
+[data-theme="light"]{--bg:#F0EEE9;--bg2:#E8E6E0;--bg3:#DDD9D0;--bg4:#D4D0C8;--b:rgba(160,110,0,.16);--b2:rgba(0,0,0,.08);--b3:rgba(0,0,0,.04);--t:#111;--t2:#666;--t3:#BBB;}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{height:100%;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);min-height:100%;overflow-x:hidden;transition:background .4s,color .4s;}
+button{cursor:pointer;font-family:inherit;}
+a{text-decoration:none;color:inherit;}
+input,select{font-family:inherit;}
+::-webkit-scrollbar{width:3px;}
+::-webkit-scrollbar-thumb{background:var(--gold-d);border-radius:4px;}
+.auth-root{display:grid;grid-template-columns:1fr 1fr;min-height:100vh;}
+@media(max-width:860px){.auth-root{grid-template-columns:1fr;}}
+
+/* LEFT PANEL */
+.lp{position:relative;overflow:hidden;min-height:100vh;display:flex;flex-direction:column;justify-content:space-between;}
+@media(max-width:860px){.lp{display:none;}}
+.lp-photo{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=1000&q=85&fit=crop');background-size:cover;background-position:center;}
+.lp-photo::after{content:'';position:absolute;inset:0;background:linear-gradient(160deg,rgba(0,0,0,.75) 0%,rgba(0,0,0,.42) 45%,rgba(0,0,0,.82) 100%);}
+.lp-content{position:relative;z-index:2;padding:clamp(28px,4%,48px);}
+.lp-logo{display:flex;align-items:center;gap:11px;cursor:pointer;margin-bottom:clamp(48px,9vh,90px);}
+.lp-logo-icon{width:42px;height:42px;background:linear-gradient(135deg,var(--gold),var(--gold-d));border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;box-shadow:0 6px 22px rgba(245,166,35,.5);flex-shrink:0;}
+.lp-logo-name{font-family:'Bebas Neue';font-size:1.4rem;letter-spacing:3px;color:#fff;}
+.lp-logo-name span{color:var(--gold);}
+.lp-logo-sub{font-size:.48rem;letter-spacing:3px;color:rgba(255,255,255,.5);text-transform:uppercase;margin-top:2px;}
+.lp-headline{font-family:'Bebas Neue';font-size:clamp(3rem,5.5vw,5.2rem);letter-spacing:.02em;line-height:.88;margin-bottom:18px;color:#fff;}
+.lp-headline em{color:var(--gold);font-style:normal;display:block;}
+.lp-sub{color:rgba(255,255,255,.62);font-size:.94rem;line-height:1.75;max-width:380px;font-weight:300;margin-bottom:clamp(28px,5vh,48px);}
+.lp-feats{list-style:none;}
+.lp-feats li{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.08);}
+.lp-feats li:last-child{border:none;}
+.lp-feat-icon{width:36px;height:36px;border-radius:9px;background:rgba(245,166,35,.15);border:1px solid rgba(245,166,35,.25);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;}
+.lp-feat-text{font-size:.87rem;color:rgba(255,255,255,.78);}
+.lp-feat-text strong{display:block;color:#fff;margin-bottom:1px;}
+.lp-bottom{position:relative;z-index:2;padding:clamp(20px,3%,36px) clamp(28px,4%,48px);}
+.lp-testi{background:rgba(255,255,255,.07);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.12);border-radius:var(--r);padding:18px 20px;margin-bottom:20px;}
+.lp-testi-stars{color:var(--gold);letter-spacing:2px;font-size:.82rem;margin-bottom:8px;}
+.lp-testi-quote{font-size:.86rem;color:rgba(255,255,255,.72);line-height:1.7;font-style:italic;margin-bottom:12px;}
+.lp-testi-author{display:flex;align-items:center;gap:10px;}
+.lp-testi-av{width:34px;height:34px;border-radius:50%;overflow:hidden;flex-shrink:0;}
+.lp-testi-av img{width:100%;height:100%;object-fit:cover;}
+.lp-testi-name{font-size:.84rem;font-weight:600;color:#fff;}
+.lp-testi-role{font-size:.72rem;color:rgba(255,255,255,.48);}
+.lp-stats{display:flex;gap:clamp(14px,3vw,28px);}
+.lp-stat-n{font-family:'Bebas Neue';font-size:1.8rem;color:var(--gold);line-height:1;}
+.lp-stat-l{font-size:.6rem;text-transform:uppercase;letter-spacing:2px;color:rgba(255,255,255,.4);font-family:'Rajdhani';}
+
+/* RIGHT PANEL */
+.rp{display:flex;align-items:center;justify-content:center;padding:clamp(24px,4%,56px) clamp(20px,6%,80px);background:var(--bg);position:relative;min-height:100vh;}
+@media(max-width:860px){.rp{min-height:auto;padding:80px 20px 50px;align-items:flex-start;}}
+.rp-controls{position:fixed;top:18px;right:18px;z-index:200;display:flex;gap:8px;}
+.ctrl-btn{display:flex;align-items:center;gap:6px;padding:7px 13px;border-radius:8px;border:1px solid var(--b2);background:rgba(6,6,6,.8);backdrop-filter:blur(10px);color:var(--t2);font-size:.76rem;font-family:'Rajdhani';font-weight:700;letter-spacing:.5px;text-transform:uppercase;transition:var(--tr);cursor:pointer;}
+.ctrl-btn:hover{border-color:var(--gold);color:var(--gold);}
+.ctrl-icon{width:32px;height:32px;border-radius:50%;border:1px solid var(--b2);background:rgba(6,6,6,.8);backdrop-filter:blur(10px);color:var(--t2);font-size:.9rem;display:flex;align-items:center;justify-content:center;transition:var(--tr);cursor:pointer;}
+.ctrl-icon:hover{border-color:var(--gold);color:var(--gold);}
+.mob-logo{display:none;justify-content:center;margin-bottom:28px;}
+@media(max-width:860px){.mob-logo{display:flex;}}
+.mob-logo .lp-logo{margin:0;}
+.mob-logo .lp-logo-name{color:var(--t);}
+.mob-logo .lp-logo-sub{color:var(--t3);}
+.form-card{width:100%;max-width:448px;animation:cardIn .5s ease both;}
+@keyframes cardIn{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:none;}}
+
+/* TABS */
+.auth-tabs{display:flex;background:var(--bg3);border:1px solid var(--b2);border-radius:11px;padding:4px;gap:3px;margin-bottom:28px;}
+.tab{flex:1;padding:10px;border-radius:8px;font-family:'Rajdhani';font-weight:700;font-size:.88rem;letter-spacing:1px;text-transform:uppercase;border:none;background:transparent;color:var(--t2);transition:var(--tr);cursor:pointer;}
+.tab.on{background:linear-gradient(135deg,var(--gold),var(--gold-d));color:#000;box-shadow:0 4px 14px rgba(245,166,35,.35);}
+
+/* FORM HEADER */
+.form-hdr{margin-bottom:22px;}
+.form-title{font-family:'Bebas Neue';font-size:2.4rem;letter-spacing:2px;line-height:.95;margin-bottom:6px;}
+.form-title em{color:var(--gold);font-style:normal;}
+.form-sub{color:var(--t2);font-size:.88rem;font-weight:300;}
+
+/* SOCIAL */
+.social-row{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:17px;}
+.soc-btn{display:flex;align-items:center;justify-content:center;gap:8px;padding:11px;border-radius:var(--rs);border:1.5px solid var(--b2);background:var(--bg3);color:var(--t2);font-size:.82rem;font-weight:500;transition:var(--tr);cursor:pointer;}
+.soc-btn:hover{border-color:rgba(245,166,35,.4);color:var(--t);background:var(--bg4);}
+.soc-btn svg{width:17px;height:17px;flex-shrink:0;}
+.divider{display:flex;align-items:center;gap:12px;margin:15px 0;color:var(--t3);font-size:.74rem;}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--b2);}
+
+/* INPUTS */
+.ig{margin-bottom:13px;}
+.ig-label{display:block;font-size:.64rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-family:'Rajdhani';font-weight:700;margin-bottom:6px;}
+.ig-wrap{position:relative;}
+.ig-ico{position:absolute;left:13px;top:50%;transform:translateY(-50%);font-size:.9rem;color:var(--t3);pointer-events:none;transition:color .2s;}
+.ig-field{width:100%;padding:12px 40px 12px 38px;background:var(--bg3);border:1.5px solid var(--b2);border-radius:var(--rs);color:var(--t);font-size:.93rem;outline:none;transition:border-color .22s,box-shadow .22s,background .22s;}
+.ig-field::placeholder{color:var(--t3);}
+.ig-field:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(245,166,35,.1);background:var(--bg4);}
+.ig-field.err{border-color:var(--red);box-shadow:0 0 0 3px rgba(239,68,68,.1);}
+.ig-field.ok{border-color:var(--green);}
+.ig:focus-within .ig-ico{color:var(--gold);}
+.ig-eye{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--t3);font-size:.9rem;cursor:pointer;transition:color .2s;line-height:1;padding:2px;}
+.ig-eye:hover{color:var(--gold);}
+.ig-hint{font-size:.71rem;margin-top:4px;display:flex;align-items:center;gap:4px;min-height:15px;}
+.ig-hint.err{color:var(--red);}
+.ig-hint.ok{color:var(--green);}
+.ig-row{display:grid;grid-template-columns:1fr 1fr;gap:11px;}
+@media(max-width:440px){.ig-row{grid-template-columns:1fr;}}
+
+/* PW STRENGTH */
+.pw-str{margin-top:6px;}
+.pw-bars{display:flex;gap:3px;margin-bottom:3px;}
+.pw-bar{flex:1;height:3px;border-radius:4px;background:var(--b2);transition:background .3s;}
+.pw-bar.weak{background:var(--red);}
+.pw-bar.fair{background:var(--gold);}
+.pw-bar.strong{background:var(--green);}
+.pw-lbl{font-size:.69rem;color:var(--t3);}
+.pw-lbl.weak{color:var(--red);}
+.pw-lbl.fair{color:var(--gold);}
+.pw-lbl.strong{color:var(--green);}
+
+/* PLAN OPTS */
+.plan-opts{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:6px;}
+@media(max-width:440px){.plan-opts{grid-template-columns:1fr;}}
+.plan-opt{border:1.5px solid var(--b2);border-radius:var(--rs);padding:10px 7px;text-align:center;cursor:pointer;transition:var(--tr);background:var(--bg3);user-select:none;}
+.plan-opt:hover{border-color:rgba(245,166,35,.4);background:var(--bg4);}
+.plan-opt.on{border-color:var(--gold);background:var(--gf);}
+.plan-opt-ico{font-size:1.3rem;margin-bottom:3px;}
+.plan-opt-name{font-family:'Rajdhani';font-weight:700;font-size:.72rem;letter-spacing:.5px;text-transform:uppercase;margin-bottom:2px;}
+.plan-opt-name em{color:var(--gold);font-style:normal;}
+.plan-opt-price{font-family:'Bebas Neue';font-size:1rem;color:var(--gold);}
+
+/* CHIPS */
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:6px;}
+.chip{padding:6px 12px;border-radius:100px;border:1.5px solid var(--b2);background:var(--bg3);font-size:.76rem;font-family:'Rajdhani';font-weight:600;color:var(--t2);cursor:pointer;transition:var(--tr);user-select:none;}
+.chip:hover{border-color:rgba(245,166,35,.35);color:var(--t);}
+.chip.on{border-color:var(--gold);background:var(--gf);color:var(--gold);}
+
+/* CHECKBOX */
+.chk{display:flex;align-items:flex-start;gap:9px;cursor:pointer;font-size:.81rem;color:var(--t2);user-select:none;margin-bottom:10px;}
+.chk input{display:none;}
+.chk-box{width:17px;height:17px;border-radius:4px;border:1.5px solid var(--b2);background:var(--bg3);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:var(--tr);font-size:.6rem;color:transparent;margin-top:1px;}
+.chk input:checked~.chk-box{background:var(--gold);border-color:var(--gold);color:#000;}
+.chk a{color:var(--gold);}
+.chk a:hover{text-decoration:underline;}
+.form-extras{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:16px;}
+.forgot-btn{font-size:.81rem;color:var(--gold);cursor:pointer;background:none;border:none;transition:opacity .2s;font-family:inherit;}
+.forgot-btn:hover{opacity:.7;}
+
+/* STEPS */
+.steps{display:flex;align-items:center;margin-bottom:22px;}
+.step-item{display:flex;flex-direction:column;align-items:center;flex:1;position:relative;}
+.step-item::after{content:'';position:absolute;top:12px;left:50%;right:-50%;height:1.5px;background:var(--b2);z-index:0;transition:background .35s;}
+.step-item:last-child::after{display:none;}
+.step-item.done::after{background:var(--gold);}
+.step-circ{width:24px;height:24px;border-radius:50%;border:2px solid var(--b2);background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:.68rem;font-weight:700;color:var(--t3);position:relative;z-index:1;transition:var(--tr);}
+.step-item.on .step-circ{border-color:var(--gold);background:var(--gold);color:#000;box-shadow:0 0 0 4px rgba(245,166,35,.15);}
+.step-item.done .step-circ{border-color:var(--green);background:var(--green);color:#fff;}
+.step-lbl{font-size:.57rem;color:var(--t3);text-transform:uppercase;letter-spacing:1px;margin-top:4px;font-family:'Rajdhani';font-weight:700;transition:color .3s;}
+.step-item.on .step-lbl{color:var(--gold);}
+.step-item.done .step-lbl{color:var(--green);}
+.sp{display:none;animation:cardIn .3s ease;}
+.sp.on{display:block;}
+
+/* AVATAR */
+.av-row{display:flex;align-items:center;gap:13px;padding:12px;background:var(--bg3);border:1px solid var(--b2);border-radius:var(--rs);margin-bottom:13px;}
+.av-prev{width:52px;height:52px;border-radius:50%;background:var(--bg4);border:2px solid var(--b);display:flex;align-items:center;justify-content:center;font-size:1.5rem;overflow:hidden;flex-shrink:0;cursor:pointer;transition:var(--tr);position:relative;}
+.av-prev:hover{border-color:var(--gold);}
+.av-prev img{width:100%;height:100%;object-fit:cover;display:none;border-radius:50%;}
+.av-overlay{position:absolute;inset:0;background:rgba(0,0,0,.5);border-radius:50%;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .2s;font-size:.7rem;}
+.av-prev:hover .av-overlay{opacity:1;}
+.av-info h5{font-size:.85rem;font-weight:600;margin-bottom:2px;}
+.av-info p{font-size:.73rem;color:var(--t3);margin-bottom:7px;}
+.av-info button{padding:4px 10px;border-radius:5px;border:1px solid var(--b);background:transparent;color:var(--t2);font-size:.72rem;font-family:'Rajdhani';font-weight:600;text-transform:uppercase;letter-spacing:.5px;transition:var(--tr);cursor:pointer;}
+.av-info button:hover{border-color:var(--gold);color:var(--gold);}
+
+/* SUBMIT */
+.btn-sub{width:100%;padding:13px;border-radius:var(--rs);border:none;background:linear-gradient(135deg,var(--gold),var(--gold-d));color:#000;font-family:'Rajdhani';font-weight:700;font-size:.94rem;letter-spacing:1.5px;text-transform:uppercase;transition:var(--tr);position:relative;}
+.btn-sub:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(245,166,35,.4);}
+.btn-sub:active{transform:none;}
+.btn-sub.loading{pointer-events:none;opacity:.85;}
+.btn-txt{display:flex;align-items:center;justify-content:center;gap:7px;}
+.spin{display:none;width:16px;height:16px;border:2px solid rgba(0,0,0,.25);border-top-color:#000;border-radius:50%;animation:spin .6s linear infinite;margin:0 auto;}
+.btn-sub.loading .btn-txt{display:none;}
+.btn-sub.loading .spin{display:block;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.btn-ghost{background:transparent!important;color:var(--t2)!important;border:1.5px solid var(--b2)!important;box-shadow:none!important;}
+.btn-ghost:hover{border-color:var(--gold)!important;color:var(--gold)!important;transform:none!important;box-shadow:none!important;}
+.btn-row{display:flex;gap:9px;margin-top:2px;}
+.btn-row .btn-sub{flex:1;}
+.form-switch{text-align:center;margin-top:16px;font-size:.83rem;color:var(--t2);}
+.form-switch a{color:var(--gold);cursor:pointer;font-weight:500;}
+.form-switch a:hover{text-decoration:underline;}
+
+/* OTP */
+.otp-row{display:flex;gap:8px;justify-content:center;margin:15px 0;}
+.otp-inp{width:44px;height:50px;border-radius:var(--rs);border:1.5px solid var(--b2);background:var(--bg3);color:var(--t);font-size:1.4rem;font-family:'Bebas Neue';text-align:center;outline:none;transition:var(--tr);}
+.otp-inp:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(245,166,35,.1);background:var(--bg4);}
+.otp-inp.filled{border-color:var(--gold);}
+@media(max-width:380px){.otp-inp{width:36px;height:44px;font-size:1.1rem;}}
+.otp-timer{text-align:center;margin-bottom:11px;font-size:.77rem;color:var(--t3);}
+.otp-timer span{color:var(--gold);}
+
+/* SUCCESS */
+.success-view{display:none;text-align:center;animation:cardIn .5s ease;}
+.success-view.on{display:block;}
+.success-ico{width:68px;height:68px;margin:0 auto 18px;background:linear-gradient(135deg,var(--green),#16A34A);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2rem;box-shadow:0 8px 28px rgba(34,197,94,.3);animation:pop .5s cubic-bezier(.34,1.56,.64,1) both;}
+@keyframes pop{from{opacity:0;transform:scale(.3);}to{opacity:1;transform:scale(1);}}
+.success-view h3{font-family:'Bebas Neue';font-size:2rem;letter-spacing:2px;margin-bottom:7px;}
+.success-view h3 em{color:var(--gold);font-style:normal;}
+.success-view p{color:var(--t2);font-size:.87rem;line-height:1.7;margin-bottom:20px;}
+.success-badges{display:flex;gap:9px;justify-content:center;flex-wrap:wrap;margin-bottom:20px;}
+.success-badge{display:flex;align-items:center;gap:7px;background:var(--gf);border:1px solid var(--b);border-radius:8px;padding:8px 13px;font-size:.81rem;color:var(--t2);}
+.success-badge strong{color:var(--gold);font-size:.7rem;display:block;font-family:'Rajdhani';letter-spacing:1px;text-transform:uppercase;}
+
+/* FORGOT */
+.forgot-view{display:none;animation:cardIn .35s ease;}
+.forgot-view.on{display:block;}
+.back-btn-sm{display:flex;align-items:center;gap:6px;font-size:.79rem;color:var(--t2);cursor:pointer;margin-bottom:18px;transition:color .2s;background:none;border:none;padding:0;font-family:inherit;}
+.back-btn-sm:hover{color:var(--gold);}
+
+/* ANNUAL BADGE */
+.annual-badge{background:rgba(34,197,94,.12);color:var(--green);border:1px solid rgba(34,197,94,.28);font-size:.6rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:2px 7px;border-radius:100px;font-family:'Rajdhani';}
+
+/* TOAST */
+.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%) translateY(10px);background:var(--bg4);border:1px solid var(--gold);border-radius:10px;padding:10px 20px;color:var(--t);font-size:.84rem;font-weight:500;opacity:0;transition:all .28s;z-index:9999;white-space:nowrap;box-shadow:0 8px 28px rgba(0,0,0,.45);pointer-events:none;}
+.toast.on{opacity:1;transform:translateX(-50%) translateY(0);}
+
+/* RESPONSIVE */
+@media(max-width:600px){
+  .rp{padding:72px 14px 40px;}
+  .plan-opts{grid-template-columns:1fr;}
+  .plan-opt{display:flex;align-items:center;gap:12px;text-align:left;padding:10px 12px;}
+  .plan-opt-ico{font-size:1.6rem;margin:0;flex-shrink:0;}
+  .plan-opt-price{margin-left:auto;flex-shrink:0;}
+  .social-row{grid-template-columns:1fr 1fr;}
+  .success-badges{flex-direction:column;align-items:center;}
+  .form-title{font-size:1.9rem;}
+  .av-row{flex-wrap:wrap;justify-content:center;text-align:center;}
+  .av-info{flex:0 0 100%;text-align:center;}
+}
+@media(max-width:380px){.social-row{grid-template-columns:1fr;}.auth-tabs .tab{font-size:.77px;padding:8px 4px;}}
+@supports(-webkit-touch-callout:none){.ig-field,.otp-inp{font-size:16px!important;}}
+button,a,[onclick]{-webkit-tap-highlight-color:transparent;}
+select.ig-field{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='7'%3E%3Cpath d='M1 1l4.5 4.5L10 1' stroke='%23F5A623' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 13px center;padding-right:34px;}
+*{min-width:0;}
+</style>
+</head>
+<body>
+
+<div class="rp-controls">
+  <button class="ctrl-btn" onclick="goBack()">← Back to Site</button>
+  <button class="ctrl-icon" id="themeBtn" onclick="toggleTheme()">🌙</button>
+</div>
+
+<div class="auth-root">
+
+  <!-- LEFT PANEL -->
+  <div class="lp">
+    <div class="lp-photo"></div>
+    <div class="lp-content">
+      <div class="lp-logo" onclick="goBack()">
+        <div class="lp-logo-icon">🦅</div>
+        <div><div class="lp-logo-name">OI<span>R</span>ION</div><div class="lp-logo-sub">Sports Arena</div></div>
+      </div>
+      <h1 class="lp-headline">Elevate<em>Your Game.</em></h1>
+      <p class="lp-sub">Join 620+ athletes who train, compete and win at ORION. Your journey to peak performance starts here.</p>
+      <ul class="lp-feats">
+        <li><div class="lp-feat-icon">⚽</div><div class="lp-feat-text"><strong>FIFA-Standard Football Field</strong>Professional turf, night lighting, changing rooms</div></li>
+        <li><div class="lp-feat-icon">🏀</div><div class="lp-feat-text"><strong>Indoor Basketball Courts</strong>Regulation hardwood floors, digital scoreboard</div></li>
+        <li><div class="lp-feat-icon">🏋️</div><div class="lp-feat-text"><strong>Fitness & Training Arena</strong>Full equipment, certified trainers on-site daily</div></li>
+        <li><div class="lp-feat-icon">🤖</div><div class="lp-feat-text"><strong>AI-Powered Training Tools</strong>Workout planner, progress tracker, nutrition tips</div></li>
+      </ul>
+    </div>
+    <div class="lp-bottom">
+      <div class="lp-testi">
+        <div class="lp-testi-stars">★★★★★</div>
+        <p class="lp-testi-quote">"ORION completely transformed my game. The AI tools and world-class facilities are unmatched — best sports investment I've ever made."</p>
+        <div class="lp-testi-author">
+          <div class="lp-testi-av"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&h=80&q=80&fit=crop&crop=face" alt="Ryan Chen"></div>
+          <div><div class="lp-testi-name">Ryan Chen</div><div class="lp-testi-role">All-Access Member · 2 years</div></div>
+        </div>
+      </div>
+      <div class="lp-stats">
+        <div><div class="lp-stat-n">620+</div><div class="lp-stat-l">Members</div></div>
+        <div><div class="lp-stat-n">3</div><div class="lp-stat-l">Facilities</div></div>
+        <div><div class="lp-stat-n">17h</div><div class="lp-stat-l">Daily</div></div>
+        <div><div class="lp-stat-n">98%</div><div class="lp-stat-l">Satisfied</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT PANEL -->
+  <div class="rp">
+    <div class="mob-logo">
+      <div class="lp-logo">
+        <div class="lp-logo-icon">🦅</div>
+        <div><div class="lp-logo-name">OI<span>R</span>ION</div><div class="lp-logo-sub">Sports Arena</div></div>
+      </div>
+    </div>
+
+    <div class="form-card" id="formCard">
+      <div class="auth-tabs" id="tabBar">
+        <button class="tab on" id="tab-login" onclick="switchTab('login')">Login</button>
+        <button class="tab" id="tab-signup" onclick="switchTab('signup')">Sign Up</button>
+      </div>
+
+      <!-- LOGIN -->
+      <div id="view-login">
+        <div class="form-hdr">
+          <div class="form-title">Welcome <em>Back</em></div>
+          <div class="form-sub">Sign in to your ORION account to continue training</div>
+        </div>
+        <div class="social-row">
+          <button class="soc-btn" onclick="socialAuth('Google')">
+            <svg viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+            Google
+          </button>
+          <button class="soc-btn" onclick="socialAuth('Facebook')">
+            <svg viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            Facebook
+          </button>
+        </div>
+        <div class="divider">or sign in with email</div>
+        <div class="ig">
+          <label class="ig-label">Email Address</label>
+          <div class="ig-wrap"><span class="ig-ico">✉️</span><input type="email" id="l-email" class="ig-field" placeholder="your@email.com" oninput="clearE(this)" onkeydown="if(event.key==='Enter')doLogin()"></div>
+          <div class="ig-hint err" id="l-email-e" style="visibility:hidden">Valid email required</div>
+        </div>
+        <div class="ig">
+          <label class="ig-label">Password</label>
+          <div class="ig-wrap">
+            <span class="ig-ico">🔒</span>
+            <input type="password" id="l-pass" class="ig-field" placeholder="Your password" oninput="clearE(this)" onkeydown="if(event.key==='Enter')doLogin()">
+            <button class="ig-eye" onclick="eyeToggle('l-pass',this)" type="button">👁️</button>
+          </div>
+          <div class="ig-hint err" id="l-pass-e" style="visibility:hidden">Password required</div>
+        </div>
+        <div class="form-extras">
+          <label class="chk" style="margin:0"><input type="checkbox" id="l-rem"><div class="chk-box">✓</div><span>Remember me</span></label>
+          <button class="forgot-btn" onclick="showForgot()">Forgot password?</button>
+        </div>
+        <button class="btn-sub" id="loginBtn" onclick="doLogin()"><span class="btn-txt">Sign In to ORION →</span><div class="spin"></div></button>
+        <div class="form-switch">Don't have an account? <a onclick="switchTab('signup')">Create one free</a></div>
+      </div>
+
+      <!-- SIGN UP -->
+      <div id="view-signup" style="display:none">
+        <div class="form-hdr">
+          <div class="form-title">Join <em>ORION</em></div>
+          <div class="form-sub">Create your account — first 7 days completely free</div>
+        </div>
+        <div class="steps" id="stepsUI">
+          <div class="step-item on" id="si1"><div class="step-circ">1</div><div class="step-lbl">Account</div></div>
+          <div class="step-item" id="si2"><div class="step-circ">2</div><div class="step-lbl">Profile</div></div>
+          <div class="step-item" id="si3"><div class="step-circ">3</div><div class="step-lbl">Plan</div></div>
+        </div>
+
+        <!-- Step 1 -->
+        <div class="sp on" id="sp1">
+          <div class="social-row">
+            <button class="soc-btn" onclick="socialAuth('Google')"><svg viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>Google</button>
+            <button class="soc-btn" onclick="socialAuth('Facebook')"><svg viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>Facebook</button>
+          </div>
+          <div class="divider">or sign up with email</div>
+          <div class="ig-row">
+            <div class="ig"><label class="ig-label">First Name</label><div class="ig-wrap"><span class="ig-ico">👤</span><input type="text" id="s-fn" class="ig-field" placeholder="John" oninput="clearE(this)"></div><div class="ig-hint err" id="s-fn-e" style="visibility:hidden">Required</div></div>
+            <div class="ig"><label class="ig-label">Last Name</label><div class="ig-wrap"><span class="ig-ico">👤</span><input type="text" id="s-ln" class="ig-field" placeholder="Doe" oninput="clearE(this)"></div><div class="ig-hint err" id="s-ln-e" style="visibility:hidden">Required</div></div>
+          </div>
+          <div class="ig"><label class="ig-label">Email Address</label><div class="ig-wrap"><span class="ig-ico">✉️</span><input type="email" id="s-email" class="ig-field" placeholder="your@email.com" oninput="liveEmail()"></div><div class="ig-hint" id="s-email-h" style="visibility:hidden">-</div></div>
+          <div class="ig"><label class="ig-label">Phone <span style="color:var(--t3);font-size:.6rem">(optional)</span></label><div class="ig-wrap"><span class="ig-ico">📱</span><input type="tel" id="s-phone" class="ig-field" placeholder="+1 (555) 000-0000"></div></div>
+          <div class="ig">
+            <label class="ig-label">Password</label>
+            <div class="ig-wrap"><span class="ig-ico">🔒</span><input type="password" id="s-pw" class="ig-field" placeholder="Create a strong password" oninput="livePW()"><button class="ig-eye" onclick="eyeToggle('s-pw',this)" type="button">👁️</button></div>
+            <div class="pw-str" id="pwStr" style="display:none"><div class="pw-bars"><div class="pw-bar" id="pb1"></div><div class="pw-bar" id="pb2"></div><div class="pw-bar" id="pb3"></div><div class="pw-bar" id="pb4"></div></div><div class="pw-lbl" id="pwLbl">Too weak</div></div>
+          </div>
+          <div class="ig">
+            <label class="ig-label">Confirm Password</label>
+            <div class="ig-wrap"><span class="ig-ico">🔒</span><input type="password" id="s-pw2" class="ig-field" placeholder="Repeat password" oninput="liveMatch()"><button class="ig-eye" onclick="eyeToggle('s-pw2',this)" type="button">👁️</button></div>
+            <div class="ig-hint" id="s-pw2-h" style="visibility:hidden">-</div>
+          </div>
+          <button class="btn-sub" onclick="gostep(2)">Continue to Profile →</button>
+          <div class="form-switch">Already a member? <a onclick="switchTab('login')">Sign in</a></div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="sp" id="sp2">
+          <div style="margin-bottom:15px"><div style="font-size:.67rem;color:var(--t3);font-family:'Rajdhani';font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:3px">Personalize your experience</div><div style="color:var(--t2);font-size:.85rem">Helps us tailor ORION for you</div></div>
+          <div class="av-row">
+            <div class="av-prev" id="avPrev" onclick="document.getElementById('avFile').click()"><span id="avEmoji">🦅</span><img id="avImg" alt="avatar"><div class="av-overlay">📷</div></div>
+            <div class="av-info"><h5>Profile Photo</h5><p>Optional — coaches use this to identify you</p><button onclick="document.getElementById('avFile').click()">Upload Photo</button><input type="file" id="avFile" accept="image/*" style="display:none" onchange="prevAvatar(this)"></div>
+          </div>
+          <div class="ig-row">
+            <div class="ig"><label class="ig-label">Date of Birth</label><div class="ig-wrap"><span class="ig-ico">🎂</span><input type="date" id="s-dob" class="ig-field"></div></div>
+            <div class="ig"><label class="ig-label">Gender</label><div class="ig-wrap"><span class="ig-ico">👤</span><select id="s-gender" class="ig-field"><option value="">Prefer not to say</option><option>Male</option><option>Female</option><option>Non-binary</option><option>Other</option></select></div></div>
+          </div>
+          <div class="ig"><label class="ig-label">Fitness Level</label><div class="ig-wrap"><span class="ig-ico">💪</span><select id="s-level" class="ig-field"><option>Beginner</option><option>Intermediate</option><option>Advanced</option><option>Professional</option></select></div></div>
+          <div class="ig"><label class="ig-label">Sports Interests</label><div class="chips"><div class="chip on" onclick="this.classList.toggle('on')">⚽ Football</div><div class="chip" onclick="this.classList.toggle('on')">🏀 Basketball</div><div class="chip" onclick="this.classList.toggle('on')">🏋️ Fitness</div><div class="chip" onclick="this.classList.toggle('on')">🏃 Running</div><div class="chip" onclick="this.classList.toggle('on')">🥅 Goalkeeping</div><div class="chip" onclick="this.classList.toggle('on')">🤸 Agility</div></div></div>
+          <div class="btn-row">
+            <button class="btn-sub btn-ghost" style="flex:0 0 auto;width:auto;padding:12px 18px" onclick="gostep(1)">← Back</button>
+            <button class="btn-sub" onclick="gostep(3)">Continue to Plan →</button>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="sp" id="sp3">
+          <div style="margin-bottom:17px"><div style="font-size:.67rem;color:var(--t3);font-family:'Rajdhani';font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:3px">Choose your membership</div><div style="color:var(--t2);font-size:.85rem">Start free for 7 days — cancel anytime</div></div>
+          <div class="ig">
+            <label class="ig-label">Membership Plan</label>
+            <div class="plan-opts" id="planOpts">
+              <div class="plan-opt" onclick="pickPlan(this,'football')"><div class="plan-opt-ico">⚽</div><div class="plan-opt-name">Football <em>Plan</em></div><div class="plan-opt-price">$45<span style="font-size:.62rem;color:var(--t3)">/mo</span></div></div>
+              <div class="plan-opt on" onclick="pickPlan(this,'basketball')"><div class="plan-opt-ico">🏀</div><div class="plan-opt-name">Basketball <em>Plan</em></div><div class="plan-opt-price">$50<span style="font-size:.62rem;color:var(--t3)">/mo</span></div></div>
+              <div class="plan-opt" onclick="pickPlan(this,'fitness')"><div class="plan-opt-ico">🏋️</div><div class="plan-opt-name">Fitness <em>Plan</em></div><div class="plan-opt-price">$40<span style="font-size:.62rem;color:var(--t3)">/mo</span></div></div>
+              <div class="plan-opt" onclick="pickPlan(this,'all')" style="grid-column:1/-1"><div class="plan-opt-ico">👑</div><div class="plan-opt-name">All-Access <em>Bundle</em></div><div class="plan-opt-price">$99<span style="font-size:.62rem;color:var(--t3)">/mo</span> <span class="annual-badge">BEST VALUE</span></div></div>
+            </div>
+          </div>
+          <div class="ig"><label class="ig-label">Billing Cycle</label><div class="ig-wrap"><span class="ig-ico">🗓️</span><select id="s-billing" class="ig-field"><option>Monthly</option><option>Quarterly — save 10%</option><option>Annual — save 20%</option></select></div></div>
+          <div class="ig">
+            <label class="ig-label">Promo Code <span style="color:var(--t3);font-size:.6rem">(optional)</span></label>
+            <div class="ig-wrap"><span class="ig-ico">🎫</span><input type="text" id="s-promo" class="ig-field" placeholder="e.g. ORION20" oninput="this.value=this.value.toUpperCase()" onblur="checkPromo()"></div>
+            <div class="ig-hint" id="promo-h" style="visibility:hidden">-</div>
+          </div>
+          <label class="chk"><input type="checkbox" id="s-terms"><div class="chk-box">✓</div><span>I agree to the <a onclick="toast('📄 Terms of Service')">Terms of Service</a> and <a onclick="toast('🔒 Privacy Policy')">Privacy Policy</a></span></label>
+          <label class="chk"><input type="checkbox" id="s-news" checked><div class="chk-box">✓</div><span>Send me training tips, events and exclusive offers</span></label>
+          <div class="btn-row">
+            <button class="btn-sub btn-ghost" style="flex:0 0 auto;width:auto;padding:12px 18px" onclick="gostep(2)">← Back</button>
+            <button class="btn-sub" id="signupBtn" onclick="doSignup()"><span class="btn-txt">Create My Account 🎉</span><div class="spin"></div></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- SUCCESS -->
+      <div class="success-view" id="successView">
+        <div class="success-ico">✓</div>
+        <h3 id="succ-title">Welcome to <em>ORION!</em></h3>
+        <p id="succ-msg">Your account has been created. Check your inbox — your 7-day free trial starts now!</p>
+        <div class="success-badges" id="succ-badges"></div>
+        <button class="btn-sub" onclick="goToDash(this)"><span class="btn-txt">Go to Dashboard →</span><div class="spin"></div></button>
+        <div style="margin-top:12px;text-align:center;font-size:.79rem;color:var(--t2)"><a onclick="toast('📬 Confirmation resent!')" style="color:var(--gold);cursor:pointer">Resend confirmation</a> · <a onclick="switchTab('login')" style="cursor:pointer">Back to Login</a></div>
+      </div>
+
+      <!-- FORGOT PASSWORD -->
+      <div class="forgot-view" id="forgotView">
+        <button class="back-btn-sm" onclick="hideForgot()">← Back to Login</button>
+        <div class="form-title" style="font-size:2rem;margin-bottom:6px">Reset <em>Password</em></div>
+        <p style="color:var(--t2);font-size:.86rem;margin-bottom:18px">Enter your email and we'll send a 6-digit reset code.</p>
+        <div id="fv1">
+          <div class="ig"><label class="ig-label">Email Address</label><div class="ig-wrap"><span class="ig-ico">✉️</span><input type="email" id="f-email" class="ig-field" placeholder="your@email.com" onkeydown="if(event.key==='Enter')sendCode()"></div></div>
+          <button class="btn-sub" id="sendCodeBtn" onclick="sendCode()"><span class="btn-txt">Send Reset Code →</span><div class="spin"></div></button>
+        </div>
+        <div id="fv2" style="display:none;animation:cardIn .35s ease">
+          <div style="text-align:center;margin-bottom:15px"><div style="font-size:2.4rem;margin-bottom:7px">📬</div><div style="font-size:.87rem;color:var(--t2)">We sent a 6-digit code to</div><div style="color:var(--gold);font-weight:600;margin-top:2px" id="fEmailDisp"></div></div>
+          <div style="font-size:.63rem;color:var(--t3);font-family:'Rajdhani';font-weight:700;letter-spacing:2px;text-transform:uppercase;text-align:center;margin-bottom:8px">Verification Code</div>
+          <div class="otp-row">
+            <input class="otp-inp" id="o0" maxlength="1" oninput="otpMove(this,0)" onkeydown="otpBack(event,0)">
+            <input class="otp-inp" id="o1" maxlength="1" oninput="otpMove(this,1)" onkeydown="otpBack(event,1)">
+            <input class="otp-inp" id="o2" maxlength="1" oninput="otpMove(this,2)" onkeydown="otpBack(event,2)">
+            <input class="otp-inp" id="o3" maxlength="1" oninput="otpMove(this,3)" onkeydown="otpBack(event,3)">
+            <input class="otp-inp" id="o4" maxlength="1" oninput="otpMove(this,4)" onkeydown="otpBack(event,4)">
+            <input class="otp-inp" id="o5" maxlength="1" oninput="otpMove(this,5)" onkeydown="otpBack(event,5)">
+          </div>
+          <div class="otp-timer">Expires in <span id="otpTime">2:00</span> · <a onclick="sendCode(true)" style="color:var(--gold);cursor:pointer">Resend</a></div>
+          <button class="btn-sub" onclick="verifyOTP()">Verify Code →</button>
+        </div>
+        <div id="fv3" style="display:none;animation:cardIn .35s ease">
+          <div class="ig">
+            <label class="ig-label">New Password</label>
+            <div class="ig-wrap"><span class="ig-ico">🔒</span><input type="password" id="f-np" class="ig-field" placeholder="New strong password" oninput="livePWField('f-np','fpwStr','fpb','fpwLbl')"><button class="ig-eye" onclick="eyeToggle('f-np',this)" type="button">👁️</button></div>
+            <div class="pw-str" id="fpwStr" style="display:none"><div class="pw-bars"><div class="pw-bar" id="fpb1"></div><div class="pw-bar" id="fpb2"></div><div class="pw-bar" id="fpb3"></div><div class="pw-bar" id="fpb4"></div></div><div class="pw-lbl" id="fpwLbl">Too weak</div></div>
+          </div>
+          <div class="ig"><label class="ig-label">Confirm New Password</label><div class="ig-wrap"><span class="ig-ico">🔒</span><input type="password" id="f-np2" class="ig-field" placeholder="Repeat new password"><button class="ig-eye" onclick="eyeToggle('f-np2',this)" type="button">👁️</button></div></div>
+          <button class="btn-sub" onclick="resetPW()">Reset Password →</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toastEl"></div>
+
+<script>
+function toggleTheme(){const h=document.documentElement;const l=h.dataset.theme==='light';h.dataset.theme=l?'dark':'light';document.getElementById('themeBtn').textContent=l?'🌙':'☀️';}
+function goBack(){window.location.href='orion-sports-arena.html';}
+function toast(msg,dur=3000){const el=document.getElementById('toastEl');el.textContent=msg;el.classList.add('on');clearTimeout(el._t);el._t=setTimeout(()=>el.classList.remove('on'),dur);}
+function switchTab(t){['login','signup'].forEach(n=>{document.getElementById('tab-'+n).classList.toggle('on',n===t);document.getElementById('view-'+n).style.display=n===t?'block':'none';});document.getElementById('tabBar').style.display='flex';document.getElementById('forgotView').classList.remove('on');document.getElementById('successView').classList.remove('on');if(t==='signup')gostep(1,true);}
+function eyeToggle(id,btn){const inp=document.getElementById(id);inp.type=inp.type==='text'?'password':'text';btn.textContent=inp.type==='text'?'🙈':'👁️';}
+function clearE(inp){inp.classList.remove('err');const h=document.getElementById(inp.id+'-e');if(h)h.style.visibility='hidden';}
+function showE(id,msg){const inp=document.getElementById(id);if(inp)inp.classList.add('err');const h=document.getElementById(id+'-e');if(h){h.textContent=msg;h.style.visibility='visible';}}
+function liveEmail(){const v=document.getElementById('s-email').value;const h=document.getElementById('s-email-h');const inp=document.getElementById('s-email');if(!v){h.style.visibility='hidden';inp.classList.remove('err','ok');return;}const ok=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);h.style.visibility='visible';h.className='ig-hint '+(ok?'ok':'err');h.textContent=ok?'✓ Valid email':'Please enter a valid email';inp.classList.toggle('err',!ok);inp.classList.toggle('ok',ok);}
+function pwScore(pw){let s=0;if(pw.length>=8)s++;if(pw.length>=12)s++;if(/[A-Z]/.test(pw)&&/[a-z]/.test(pw))s++;if(/\d/.test(pw))s++;if(/[^A-Za-z0-9]/.test(pw))s++;if(s<=1)return{n:1,cls:'weak',lbl:'Too weak'};if(s<=2)return{n:2,cls:'weak',lbl:'Weak'};if(s<=3)return{n:3,cls:'fair',lbl:'Medium'};if(s<=4)return{n:4,cls:'strong',lbl:'Strong'};return{n:5,cls:'strong',lbl:'Very strong'};}
+function livePWField(fid,wrapId,barPfx,lblId){const pw=document.getElementById(fid).value;const wrap=document.getElementById(wrapId);if(!pw){wrap.style.display='none';return;}wrap.style.display='block';const s=pwScore(pw);for(let i=1;i<=4;i++){const b=document.getElementById(barPfx+i);if(b)b.className='pw-bar'+(i<=s.n?' '+s.cls:'');}const l=document.getElementById(lblId);if(l){l.className='pw-lbl '+s.cls;l.textContent=s.lbl;}}
+function livePW(){livePWField('s-pw','pwStr','pb','pwLbl');}
+function liveMatch(){const p1=document.getElementById('s-pw').value;const p2=document.getElementById('s-pw2').value;const h=document.getElementById('s-pw2-h');const inp=document.getElementById('s-pw2');if(!p2){h.style.visibility='hidden';inp.classList.remove('err','ok');return;}const ok=p1===p2;h.style.visibility='visible';h.className='ig-hint '+(ok?'ok':'err');h.textContent=ok?'✓ Passwords match':'Passwords do not match';inp.classList.toggle('err',!ok);inp.classList.toggle('ok',ok);}
+const PROMOS={ORION20:20,WELCOME10:10,ATHLETE15:15,FREEMONTH:100,SUMMER25:25};
+function checkPromo(){const code=document.getElementById('s-promo').value.trim().toUpperCase();const h=document.getElementById('promo-h');const inp=document.getElementById('s-promo');if(!code){h.style.visibility='hidden';inp.classList.remove('err','ok');return;}h.style.visibility='visible';if(PROMOS[code]!==undefined){const d=PROMOS[code];h.className='ig-hint ok';h.textContent=d===100?'🎉 1 month FREE!':'🎉 '+d+'% discount applied!';inp.classList.add('ok');inp.classList.remove('err');toast('🎉 Code '+code+' applied!');}else{h.className='ig-hint err';h.textContent='Invalid promo code';inp.classList.add('err');inp.classList.remove('ok');}}
+let selPlan='basketball';
+function pickPlan(el,plan){document.querySelectorAll('.plan-opt').forEach(p=>p.classList.remove('on'));el.classList.add('on');selPlan=plan;}
+function prevAvatar(input){if(!input.files||!input.files[0])return;const reader=new FileReader();reader.onload=e=>{const img=document.getElementById('avImg');img.src=e.target.result;img.style.display='block';document.getElementById('avEmoji').style.display='none';};reader.readAsDataURL(input.files[0]);toast('✅ Photo uploaded!');}
+let curStep=1;
+function gostep(n,silent=false){
+  if(n>curStep&&!silent){
+    if(curStep===1){const fn=document.getElementById('s-fn').value.trim();const ln=document.getElementById('s-ln').value.trim();const em=document.getElementById('s-email').value.trim();const pw=document.getElementById('s-pw').value;const pw2=document.getElementById('s-pw2').value;let ok=true;if(!fn){showE('s-fn','Required');ok=false;}if(!ln){showE('s-ln','Required');ok=false;}if(!em||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){document.getElementById('s-email').classList.add('err');const h=document.getElementById('s-email-h');h.className='ig-hint err';h.textContent='Valid email required';h.style.visibility='visible';ok=false;}if(!pw||pw.length<6){toast('⚠️ Password must be at least 6 characters');ok=false;}else if(pw!==pw2){toast('⚠️ Passwords do not match');ok=false;}if(!ok)return;}
+  }
+  document.querySelectorAll('.sp').forEach(p=>p.classList.remove('on'));
+  document.getElementById('sp'+n).classList.add('on');
+  for(let i=1;i<=3;i++){const si=document.getElementById('si'+i);si.classList.remove('on','done');const c=si.querySelector('.step-circ');if(i<n){si.classList.add('done');c.textContent='✓';}else if(i===n){si.classList.add('on');c.textContent=i;}else{c.textContent=i;}}
+  curStep=n;
+}
+function doLogin(){const email=document.getElementById('l-email').value.trim();const pass=document.getElementById('l-pass').value;let ok=true;if(!email||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){showE('l-email','Please enter a valid email');ok=false;}if(!pass){showE('l-pass','Password required');ok=false;}if(!ok)return;const btn=document.getElementById('loginBtn');btn.classList.add('loading');setTimeout(()=>{btn.classList.remove('loading');showSuccess('login',email,'');},1800);}
+function doSignup(){if(!document.getElementById('s-terms').checked){toast('⚠️ Please accept the Terms of Service');return;}const btn=document.getElementById('signupBtn');btn.classList.add('loading');setTimeout(()=>{btn.classList.remove('loading');const fn=document.getElementById('s-fn').value.trim();const em=document.getElementById('s-email').value.trim();const pm={football:'Football',basketball:'Basketball',fitness:'Fitness',all:'All-Access'};showSuccess('signup',em,fn,pm[selPlan]||'Basketball');},2000);}
+function showSuccess(type,email,name,plan=''){document.getElementById('tabBar').style.display='none';document.getElementById('view-login').style.display='none';document.getElementById('view-signup').style.display='none';document.getElementById('forgotView').classList.remove('on');const sv=document.getElementById('successView');sv.classList.add('on');if(type==='login'){document.getElementById('succ-title').innerHTML='Welcome <em>Back!</em>';document.getElementById('succ-msg').textContent='Signed in successfully. Redirecting you to your ORION dashboard...';document.getElementById('succ-badges').innerHTML='<div class="success-badge"><span>✉️</span><div><strong>Signed In As</strong>'+email+'</div></div>';}else{document.getElementById('succ-title').innerHTML='Welcome, <em>'+(name||'Athlete')+'!</em>';document.getElementById('succ-msg').innerHTML='Your account is all set! 🎉 Confirmation sent to <strong style="color:var(--gold)">'+(email||'your email')+'</strong>. Your 7-day free trial starts now.';document.getElementById('succ-badges').innerHTML='<div class="success-badge"><span>📧</span><div><strong>Email</strong>'+email+'</div></div><div class="success-badge"><span>👑</span><div><strong>Plan</strong>'+plan+' Membership</div></div><div class="success-badge"><span>🎁</span><div><strong>Trial</strong>7 days free</div></div>';}}
+function goToDash(btn){btn.classList.add('loading');setTimeout(()=>{window.location.href='orion-sports-arena.html';},1200);}
+function socialAuth(p){toast('🔄 Connecting to '+p+'...');setTimeout(()=>toast('✅ '+p+' connected!'),1500);}
+function showForgot(){document.getElementById('view-login').style.display='none';document.getElementById('tabBar').style.display='none';document.getElementById('forgotView').classList.add('on');['fv1','fv2','fv3'].forEach((id,i)=>{document.getElementById(id).style.display=i===0?'block':'none';});}
+function hideForgot(){document.getElementById('forgotView').classList.remove('on');document.getElementById('tabBar').style.display='flex';switchTab('login');clearInterval(window._oi);}
+let _oi=null;
+function sendCode(resend=false){const email=document.getElementById('f-email')?.value?.trim();if(!resend&&(!email||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))){toast('⚠️ Please enter a valid email');return;}const btn=document.getElementById('sendCodeBtn');if(btn)btn.classList.add('loading');setTimeout(()=>{if(btn)btn.classList.remove('loading');document.getElementById('fv1').style.display='none';document.getElementById('fv2').style.display='block';const d=document.getElementById('fEmailDisp');if(d)d.textContent=email||'your email';clearOTP();startOTPTimer();toast(resend?'📬 New code sent!':'📬 Code sent to your email!');},1300);}
+function startOTPTimer(){clearInterval(_oi);let s=120;const el=document.getElementById('otpTime');const tick=()=>{const m=Math.floor(s/60),sec=s%60;if(el)el.textContent=m+':'+(sec<10?'0':'')+sec;if(--s<0){clearInterval(_oi);if(el)el.textContent='Expired';}};tick();_oi=setInterval(tick,1000);}
+function clearOTP(){for(let i=0;i<6;i++){const el=document.getElementById('o'+i);if(el){el.value='';el.classList.remove('filled');}}setTimeout(()=>document.getElementById('o0')?.focus(),100);}
+function otpMove(inp,idx){inp.value=inp.value.replace(/\D/g,'');inp.classList.toggle('filled',!!inp.value);if(inp.value&&idx<5)document.getElementById('o'+(idx+1)).focus();let full=true;for(let i=0;i<6;i++)if(!document.getElementById('o'+i)?.value)full=false;if(full)setTimeout(verifyOTP,280);}
+function otpBack(e,idx){if(e.key==='Backspace'&&!e.target.value&&idx>0)document.getElementById('o'+(idx-1)).focus();}
+function verifyOTP(){let code='';for(let i=0;i<6;i++)code+=document.getElementById('o'+i)?.value||'';if(code.length<6){toast('⚠️ Enter all 6 digits');return;}clearInterval(_oi);toast('✅ Code verified!');setTimeout(()=>{document.getElementById('fv2').style.display='none';document.getElementById('fv3').style.display='block';},380);}
+function resetPW(){const p1=document.getElementById('f-np').value;const p2=document.getElementById('f-np2').value;if(!p1||p1.length<6){toast('⚠️ Password must be at least 6 characters');return;}if(p1!==p2){toast('⚠️ Passwords do not match');return;}const btn=document.querySelector('#fv3 .btn-sub');if(btn)btn.classList.add('loading');setTimeout(()=>{if(btn)btn.classList.remove('loading');toast('✅ Password reset!');setTimeout(()=>hideForgot(),700);},1500);}
+(function(){const params=new URLSearchParams(window.location.search);const tab=params.get('tab');const plan=params.get('plan');if(tab==='signup'){switchTab('signup');if(plan){const pm={football:0,basketball:1,fitness:2,all:3};const idx=pm[plan];if(idx!==undefined){const opts=document.querySelectorAll('.plan-opt');if(opts[idx]){opts.forEach(o=>o.classList.remove('on'));opts[idx].classList.add('on');selPlan=plan;}}}}else{switchTab('login');}})();
+</script>
+</body>
+</html>
