@@ -1,0 +1,594 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="navfooterstyle.css" />
+    <link rel="icon" href="./Images/Logo/Big.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Orion Sports Arena</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script
+      type="module"
+      src="https://ka-f.webawesome.com/webawesome@3.5.0/webawesome.loader.js"
+    ></script>
+    <style>
+      section {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+    padding: 0 80px;
+}
+.header {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 10px;
+    margin: auto;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+}
+.header .header-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+    width: 100%;
+}
+.header .header-text h1 {
+    color: var(--primary-color);
+    font-size: 12px;
+    font-weight: 900;
+    font-style: normal;
+    margin: 0;
+}
+.header .header-text h1:nth-of-type(2) {
+    margin: 0;
+    font-size: 60px;
+}
+.header .header-text h1:nth-of-type(2) span {
+    color: var(--text-white);
+}
+.header .header-text p {
+    color: var(--text-color);
+    font-size: 15px;
+    font-weight: 400;
+    font-style: normal;
+    margin: 0;
+}
+#stats {
+    display: flex;
+    gap: 50px;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: center;
+    height: fit-content;
+    margin: 0 auto;
+}
+#stats div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+#stats div .sts {
+    color: var(--primary-color);
+    font-size: 32px;
+    font-weight: 600;
+    font-style: normal;
+    width: fit-content;
+    height: fit-content;
+    margin: 0;
+}
+#stats div .sts p {
+    margin: 0;
+}
+#stats div:not(:first-child) {
+    color: var(--text-color);
+    font-size: 15px;
+    font-weight: 400;
+    font-style: normal;
+}
+.story {
+    display: flex;
+    gap: 10px;
+    padding: 10px 20px;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+.story .real_story {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+.story .real_story h6 {
+    margin: 0;
+    padding: 0;
+    font-size: 12px;
+    font-weight: 900;
+    color: var(--primary-color);
+    text-transform: uppercase;
+}
+.story .real_story h1 {
+    margin: 0;
+    padding: 0;
+    font-size: 32px;
+    font-weight: 900;
+    color: var(--primary-color);
+    text-transform: uppercase;
+}
+.story .real_story h1 span {
+    color: var(--text-white);
+}
+.story .real_story p {
+    margin: 0;
+    padding: 0;
+    font-size: 11px;
+    color: var(--text-color);
+}
+.story .real_story .story_achiv {
+    display: flex;
+    gap: 20px;
+    padding: 10px;
+}
+.story .real_story .story_achiv div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    border-radius: 10px;
+    background-color: var(--boxbg-color);
+    font-size: 11px;
+    color: var(--text-color);
+    border: solid 0.5px #FF9D00;
+    width: fit-content;
+}
+.story .events {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+}
+.story .events .event {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+.story .events .event h6 {
+    font-size: 12px;
+    font-weight: 600;
+    margin: 0;
+    padding: 0;
+    color: var(--primary-color);
+}
+.story .events .event h3 {
+    font-size: 12px;
+    font-weight: 900;
+    margin: 0;
+    padding: 0;
+    color: var(--text-white);
+}
+.story .events .event p {
+    font-size: 10px;
+    margin: 0;
+    padding: 0;
+    color: var(--text-color);
+}
+.sections {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+}
+.sections .achievements {
+    display: flex;
+    gap: 20px;
+    padding: 10px 0px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.sections .achievements .boxs {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 28px;
+    width: 250px;
+    height: 277px;
+    background-color: var(--boxbg-color);
+    border-radius: 10px;
+    border: solid 0.5px #FF9D00;
+    align-items: center;
+    justify-content: center;
+}
+
+.sections .achievements .boxs p:first-of-type {
+    width: 100%;
+    text-align: center;
+    align-content: center;
+    font-size: 40px;
+    font-weight: 900;
+    margin: 0;
+}
+.sections .achievements .boxs p:nth-of-type(2) {
+    width: 100%;
+    text-align: center;
+    align-content: center;
+    font-size: 40px;
+    font-weight: 900;
+    margin: 0;
+    color: var(--primary-color);
+}
+.sections .achievements .boxs p:nth-of-type(2) span {
+    font-size: 15px;
+}
+.sections .achievements .boxs h6 {
+    width: 100%;
+    text-align: center;
+    align-content: center;
+    font-size: 15px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--text-white);
+}
+.sections .achievements .boxs p:nth-of-type(3) {
+    width: 100%;
+    text-align: center;
+    align-content: center;
+    font-size: 13px;
+    margin: 0;
+    color: var(--text-color);
+}
+.sections .partners {
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.sections .partners a img.w200 {
+    width: 200px;
+}
+.sections .partners a img.w300 {
+    width: 300px;
+}
+/*------------------------ Media --------------------*/
+@media (max-width: 500px) {
+  section {
+    gap: 20px;
+    padding: 0 15px;
+}
+.header .header-text {
+    padding: 0px;
+}
+.header .header-text h1 {
+    font-size: 10px;
+}
+.header .header-text h1:nth-of-type(2) {
+    font-size: 40px;
+}
+.header .header-text p {
+    font-size: 12px;
+}
+#stats {
+    gap: 15px;
+}
+#stats div {
+    gap: 5px;
+}
+#stats div .sts {
+    font-size: 12px;
+}
+#stats div:not(:first-child) {
+    font-size: 9px;
+}
+.story {
+    flex-wrap: wrap;
+    padding: 10px;
+}
+.story .real_story h6 {
+    font-size: 10px;
+}
+.story .real_story h1 {
+    font-size: 22px;
+}
+.story .real_story p {
+    font-size: 10px;
+}
+.story .real_story .story_achiv {
+    gap: 10px;
+    padding: 10px 0;
+}
+.story .real_story .story_achiv div {
+    font-size: 10px;
+    text-align: center;
+}
+.story .events {
+    gap: 10px;
+}
+.story .events .event {
+    gap: 5px;
+}
+.story .events .event h6 {
+    font-size: 10px;
+}
+}
+    </style>
+  </head>
+  <body>
+    <div id="page">
+      <nav>
+      <div class="logo">
+        <a href="index.html"><img src="./Images/Logo/Small.png" alt="Logo" /></a>
+        <div>
+          <button class="theme1">🌙</button>
+          <div class="hamburger">☰</div>
+        </div>
+      </div>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="facilities.html">Facilities</a>
+        <a href="membership.html">Membership</a>
+        <a href="contact.html">Contact</a>
+        <a href="about.html">About</a>
+      </div>
+      <div class="nav-act">
+        <button class="theme">🌙</button>
+        <a href="#">LOG IN</a>
+        <a href="#">SIGN UP</a>
+      </div>
+      <div id="hamburger">☰</div>
+    </nav>
+    <section>
+      <div class="header">
+        <div class="header-text">
+          <h1>Est. 2018</h1>
+          <h1><span>WE ARE</span> ORION</h1>
+          <p>
+            Born from a love of sport. Built for every athlete. Committed to one
+            mission — giving every player the arena they deserve.
+          </p>
+        </div>
+        <div id="stats">
+          <div>
+            <div class="sts">
+              <p>500+</p>
+            </div>
+            <div>Active Members</div>
+          </div>
+          <div>
+            <div class="sts">
+              <p>6</p>
+            </div>
+            <div>Years Running</div>
+          </div>
+          <div>
+            <div class="sts">
+              <p>3</p>
+            </div>
+            <div>World-Class Facilities</div>
+          </div>
+          <div>
+            <div class="sts">
+              <p>98%</p>
+            </div>
+            <div>Member Satisfaction</div>
+          </div>
+        </div>
+      </div>
+      <div class="story">
+        <div class="real_story">
+          <h6>Our Story</h6>
+          <h1><span>From a Dream to</span> an Arena</h1>
+          <p>ORION Sports Arena was founded in 2018 by a group of lifelong athletes who shared one frustration — their city had no world-class venue that brought every sport under one roof.</p>
+          <p>They pooled resources, secured a location, and spent 18 months building a facility they'd always wished existed. The name ORION was chosen deliberately — the hunter constellation, always reaching, always striving higher.</p>
+          <p>What started with a single football pitch and six members has grown into a full multi-sport complex hosting over 500 active members, weekly leagues, tournaments, and AI-powered training tools used daily.</p>
+          <div class="story_achiv">
+            <div>🛠️ Founded 2018</div>
+            <div>🏟️ 3 Facilities</div>
+            <div>🤖 AI-Powered Since 2023</div>
+            <div>🏆 14 Tournaments Hosted</div>
+          </div>
+        </div>
+        <div class="events">
+          <div class="event">
+            <h6>2018</h6>
+            <h3>The Beginning</h3>
+            <p>Football Field opens. First 6 members join. ORION is born.</p>
+          </div>
+          <div class="event">
+            <h6>2019</h6>
+            <h3>Basketball Courts Added</h3>
+            <p>Indoor hardwood courts complete. First ORION League season launched.</p>
+          </div>
+          <div class="event">
+            <h6>2021</h6>
+            <h3>Fitness Arena Opens</h3>
+            <p>Full-equipment fitness center added. Trainer Dave joins the team.</p>
+          </div>
+          <div class="event">
+            <h6>2023</h6>
+            <h3>AI Tools Launch</h3>
+            <p>Workout planner, progress tracker, and nutrition tools go live. ORION enters the future.</p>
+          </div>
+          <div class="event">
+            <h6>2025-2026</h6>
+            <h3>Expanding & Innovating</h3>
+            <p>600+ members, 18 tournaments hosted, new AI tools launched, and Phase 2 expansion underway.</p>
+          </div>
+        </div>
+      </div>
+      <div class="sections">
+        <div class="title_section">
+        <p>Milestones</p>
+        <h1><span>What We've</span> Achieved</h1>
+        </div>
+        <div class="achievements">
+            <div class="boxs">
+          <p>🏆</p>
+          <p>18</p>
+          <h6>Tournaments Hosted</h6>
+          <p>
+            FIFA-standard turf for training, matches, and competitive games.
+          </p>
+        </div>
+        <div class="boxs">
+          <p>👥</p>
+          <p>620+</p>
+          <h6>Active Members</h6>
+          <p>
+            Athletes of all levels from 28 nationalities who train, compete, and grow at ORION every week
+          </p>
+        </div>
+        <div class="boxs">
+          <p>⭐</p>
+          <p>4.9<span>/5</span></p>
+          <h6>Average Rating</h6>
+          <p>
+            Based on 340+ member reviews across Google, Facebook, and our internal platform
+          </p>
+        </div>
+        <div class="boxs">
+          <p>🌍</p>
+          <p>28</p>
+          <h6>Nationalities</h6>
+          <p>
+            Athletes from 23 different countries train at ORION — sport truly is a universal language
+          </p>
+        </div>
+        </div>
+      </div>
+      <div class="sections">
+        <div class="title_section">
+          <p>Trusted By</p>
+          <h1><span>Our</span> Partners</h1>
+        </div>
+        <div class="partners">
+          <a href="#"
+            ><img
+              src="./Images/Footer/sponsors/fifa.png"
+              alt="fifa"
+              class="w200"
+          /></a>
+          <a href="#"
+            ><img
+              src="./Images/Footer/sponsors/nike.png"
+              alt="nike"
+              class="w300"
+              id="nike_partner"
+          /></a>
+          <a href="#"
+            ><img
+              src="./Images/Footer/sponsors/nba.png"
+              alt="nba"
+              class="w200"
+          /></a>
+          <a href="#"
+            ><img
+              src="./Images/Footer/sponsors/Mastercard.png"
+              alt="mastercard"
+              class="w300"
+          /></a>
+        </div>
+      </div>
+    </section>
+    <footer>
+      <div id="footer_content">
+        <div id="info">
+          <img src="./Images/Logo/Small.png" alt="logo" />
+          <p>
+            Premium sports facilities built to elevate every athlete. Train
+            harder, play smarter, win bigger.
+          </p>
+          <div id="socials">
+            <a href="#"
+              ><img src="./Images/Footer/socials/facebook.png" alt="facebook"
+            /></a>
+            <a href="#"
+              ><img src="./Images/Footer/socials/twitter.png" alt="x"
+            /></a>
+            <a href="#"
+              ><img
+                src="./Images/Footer/socials/mdi_instagram.png"
+                alt="instagram"
+            /></a>
+            <a href="#"
+              ><img src="./Images/Footer/socials/youtube.png" alt="youtube"
+            /></a>
+          </div>
+        </div>
+        <div id="links">
+          <div class="links">
+            <h1>LINKS</h1>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="facilities.html">Facilities</a></li>
+              <li><a href="membership.html">Membership</a></li>
+              <li><a href="contact.html">Contact</a></li>
+              <li><a href="#page">About</a></li>
+            </ul>
+          </div>
+          <div class="links">
+            <h1>CONTACT</h1>
+            <ul>
+              <li><a href="#">05 00 00 00 01</a></li>
+              <li><a href="#">WhatsApp</a></li>
+              <li><a href="#">orionsportsarena@gmail.com</a></li>
+              <li><a href="#">Send a Message</a></li>
+              <li><a href="#">Client Support</a></li>
+            </ul>
+          </div>
+        </div>
+        <div id="sponsors">
+          <h1>Sponsored By</h1>
+          <div class="sponsors_images">
+            <a href="#"
+              ><img
+                src="./Images/Footer/sponsors/fifa.png"
+                alt="fifa"
+                class="w50"
+            /></a>
+            <a href="#"
+              ><img
+                src="./Images/Footer/sponsors/nike.png"
+                alt="nike"
+                class="w80"
+                id="nike"
+            /></a>
+            <a href="#"
+              ><img
+                src="./Images/Footer/sponsors/nba.png"
+                alt="nba"
+                class="w50"
+            /></a>
+            <a href="#"
+              ><img
+                src="./Images/Footer/sponsors/Mastercard.png"
+                alt="mastercard"
+                class="w80"
+            /></a>
+          </div>
+        </div>
+      </div>
+      <div id="copyright">
+        <p>© 2026 Orion Sports Arena. All rights reserved.</p>
+        <p>Built with ❤️ for athletes</p>
+      </div>
+    </footer>
+    </div>
+    <script src="navfooter.js"></script>
+    <script>
+      $(document).ready(function () {});
+    </script>
+  </body>
+</html>

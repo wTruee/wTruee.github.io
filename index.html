@@ -1,0 +1,950 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="navfooterstyle.css" />
+    <link rel="icon" href="./Images/Logo/Big.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Orion Sports Arena</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <style>
+      /*------------------------ Header -----------------------*/
+.header {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+    padding: 10px;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+}
+.header .header-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 10px;
+}
+.header .header-text h1 {
+    color: var(--text-white);
+    font-size: 80px;
+    font-weight: 800;
+    font-style: normal;
+    margin: 0;
+}
+.header .header-text h1:nth-of-type(2) {
+    color: var(--primary-color);
+    margin-top: -40px;
+}
+.header .header-text p {
+    color: var(--text-color);
+    font-size: 20px;
+    font-weight: 400;
+    font-style: normal;
+    text-align: center;
+    margin: 0;
+}
+.header-button {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+.header-button a {
+    color: black;
+    text-decoration: none;
+    border-radius: 10px;
+    width: fit-content;
+    font-size: 18px;
+    font-weight: 600;
+    font-style: normal;
+    text-align: center;
+    height: fit-content;
+    padding: 10px;
+}
+.header-button a:first-child {
+    background-color: var(--primary-color);
+    transition: all ease 0.3s;
+}
+.header-button a:first-child:hover {
+    box-shadow: 0 5px 10px #ff9d0050;
+}
+.header-button a:nth-child(2) {
+    border: solid 1px var(--text-color);
+    color: var(--text-color);
+    transition: all ease 0.3s;
+}
+.header-button a:nth-child(2):hover {
+    background-color: #ff9d0010;
+    color: var(--primary-color);
+    border: solid 1px var(--primary-color);
+}
+#stats {
+    display: flex;
+    gap: 50px;
+    width: fit-content;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+    margin: 0 auto;
+}
+#stats div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#stats div .sts {
+    color: var(--primary-color);
+    font-size: 32px;
+    font-weight: 600;
+    font-style: normal;
+    width: fit-content;
+    height: fit-content;
+    margin: 0;
+}
+#stats div:not(:first-child) {
+    color: var(--text-color);
+    font-size: 15px;
+    font-weight: 400;
+    font-style: normal;
+}
+/*------------------------ Main -----------------------*/
+
+
+/*------------------------ Section1 -----------------------*/
+#section1 {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 10px 0px;
+    align-items: center;
+    justify-content: center;
+    height: fit-content;
+}
+#section1 .section_content {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    gap: 20px;
+    padding: 10px 0;
+    align-items: center;
+    justify-content: center;
+}
+#section1 .section_content .boxs {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    padding: 30px;
+    width: 320px;
+    height: fit-content;
+    background-color: var(--boxbg-color);
+    border-radius: 10px;
+    border: solid 0.5px #FF9D00;
+    align-items: center;
+    justify-content: center;
+}
+
+#section1 .section_content .boxs p:first-of-type {
+    width: 100%;
+    height: 170px;
+    text-align: center;
+    align-content: center;
+    font-size: 80px;
+    font-weight: 900;
+    margin: 0;
+}
+#section1 .section_content .boxs h1 {
+    width: 100%;
+    text-transform: uppercase;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin: 0;
+}
+#section1 .section_content .boxs h1 span {
+    color: var(--text-white);
+}
+#section1 .section_content .boxs p:nth-of-type(2) {
+    width: 100%;
+    text-transform: none;
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--text-color);
+    margin: 0;
+}
+#section1 .section_content .boxs ul {
+    list-style-type: disc;
+    width: 100%;
+    padding-left: 20px;
+    margin: 0;
+}
+#section1 .section_content .boxs ul li {
+    color: var(--text-color);
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+#section1 .section_content .boxs ul li::marker {
+    color: var(--primary-color);
+}
+#section1 .section_content .boxs #btns {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+#section1 .section_content .boxs #btns .details a {
+    color: var(--primary-color);
+    background-color: transparent;
+    border-radius: 10px;
+    border: 1px solid var(--primary-color);
+    font-size: 13px;
+    font-weight: 600;
+    width: fit-content;
+    height: fit-content;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    transition: all ease 0.3s;
+}
+#section1 .section_content .boxs #btns .details a:hover {
+    background-color: #ff9d0010;
+}
+#section1 .section_content .boxs #btns .booknow a {
+    color: black;
+    background-color: var(--primary-color);
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    width: fit-content;
+    height: fit-content;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    transition: all ease 0.3s;
+}
+#section1 .section_content .boxs #btns .booknow a:hover {
+    box-shadow: 0 5px 10px #ff9d0050;
+}
+/*------------------------ Section2 -----------------------*/
+#section2 {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 10px 0px;
+    align-items: center;
+    justify-content: center;
+    height: fit-content;
+    width: 100%;
+    overflow: hidden;
+}
+#section2 #section_content_holder {
+    width: 100%;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+}
+#section2 .section_content {
+    width: max-content;
+    height: fit-content;
+    display: flex;
+    gap: 20px;
+    padding: 10px 0;
+    justify-content: flex-start;
+}
+#section2 .section_content .boxs1 {
+    display: flex;
+    max-width: 100%;
+    min-width: 373px;
+    flex-direction: column;
+    gap: 10px;
+    padding: 30px 20px;
+    width: 320px;
+    height: fit-content;
+    background-color: var(--boxbg-color);
+    border-radius: 10px;
+    border: solid 0.5px #FF9D00;
+    align-items: center;
+    justify-content: center;
+}
+
+#section2 .section_content .boxs1 p:first-of-type {
+    color: var(--primary-color);
+    width: 100%;
+    height: fit-content;
+    text-align: start;
+    font-size: 16px;
+    font-weight: 900;
+    margin: 0;
+}
+#section2 .section_content .boxs1 p:nth-of-type(2) {
+    width: 100%;
+    text-transform: none;
+    font-size: 13px;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--text-color);
+    margin: 0;
+}
+#section2 .section_content .boxs1 .profile {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    gap: 10px;
+    height: fit-content;
+    align-items: center;
+    justify-content: center;
+}
+#section2 .section_content .boxs1 .profile img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+#section2 .section_content .boxs1 .profile .profile_description {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: fit-content;
+    align-items: flex-start;
+    justify-content: center;
+}
+#section2 .section_content .boxs1 .profile .profile_description p:first-of-type {
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--text-color);
+}
+#section2 .section_content .boxs1 .profile .profile_description p:nth-of-type(2) {
+    font-size: 10px;
+    font-weight: 400;
+    font-style: normal;
+}
+/*------------------------ Section3 -----------------------*/
+#section3 {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 10px 0px;
+    align-items: center;
+    justify-content: center;
+    height: fit-content;
+}
+#section3 .section_content {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    gap: 20px;
+    padding: 10px 20px;
+    justify-content: center;
+}
+#section3 .section_content .boxs2 {
+    display: flex;
+    width: fit-content;
+    flex-direction: column;
+    gap: 20px;
+    padding: 30px;
+    background-color: var(--boxbg-color);
+    border-radius: 10px;
+    border: solid 0.5px #FF9D00;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+#section3 .section_content .boxs2 h1 {
+    color: var(--primary-color);
+    text-transform: uppercase;
+    width: 100%;
+    height: fit-content;
+    text-align: start;
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0;
+}
+#section3 .section_content .boxs2 h1 span {
+    color: var(--text-white);
+}
+#section3 .section_content .boxs2_1 ul {
+    list-style-type: disc;
+    width: 100%;
+    margin: 0;
+}
+#section3 .section_content .boxs2_1 ul li {
+    color: var(--text-color);
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 46px;
+}
+#section3 .section_content .boxs2_1 ul li::marker {
+    color: var(--primary-color);
+}
+#section3 .section_content .boxs2_2 iframe {
+    width: 404px;
+    height: 160px;
+    border-radius: 10px;
+}
+#section3 .section_content .boxs2_2 #access {
+    width: 424px;
+    height: fit-content;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+#section3 .section_content .boxs2_2 #access .access {
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+#section3 .section_content .boxs2_2 #access .access img {
+    width: 30px;
+    height: 30px;
+}
+#section3 .section_content .boxs2_2 #access .access p {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-color);
+}
+/*-------------------Media queray -------------------*/
+@media (max-width: 500px) {
+  .header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    padding: 10px;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+}
+.header .header-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 10px;
+}
+.header-button a {
+    font-size: 12px;
+}
+.header .header-text h1 {
+    color: var(--text-white);
+    font-size: 40px;
+    font-weight: 800;
+    font-style: normal;
+    margin: 0;
+}
+.header .header-text h1:nth-of-type(2) {
+    color: var(--primary-color);
+    margin-top: -20px;
+}
+.header .header-text p {
+    color: var(--text-color);
+    font-size: 15px;
+    font-weight: 400;
+    font-style: normal;
+    text-align: center;
+    margin: 0;
+}
+#stats {
+    display: flex;
+    gap: 20px;
+    width: fit-content;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+    margin: 0 auto;
+}
+#stats div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#stats div .sts {
+    color: var(--primary-color);
+    font-size: 12px;
+    font-weight: 600;
+    font-style: normal;
+    width: fit-content;
+    height: fit-content;
+    margin: 0;
+}
+#stats div:not(:first-child) {
+    color: var(--text-color);
+    font-size: 13px;
+    font-weight: 400;
+    font-style: normal;
+}
+/*--------------- Section1 -----------------*/
+#section1 {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 10px 0px;
+    align-items: center;
+    justify-content: center;
+    height: fit-content;
+}
+#section1 .section_content {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 10px 0;
+    align-items: center;
+    justify-content: center;
+}
+#section1 .section_content .boxs {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    padding: 30px;
+    width: 320px;
+    height: fit-content;
+    background-color: var(--boxbg-color);
+    border-radius: 10px;
+    border: solid 0.5px #FF9D00;
+    align-items: center;
+    justify-content: center;
+}
+
+#section1 .section_content .boxs p:first-of-type {
+    width: 100%;
+    height: 170px;
+    text-align: center;
+    align-content: center;
+    font-size: 80px;
+    font-weight: 900;
+    margin: 0;
+}
+#section1 .section_content .boxs h1 {
+    width: 100%;
+    text-transform: uppercase;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin: 0;
+}
+#section1 .section_content .boxs h1 span {
+    color: var(--text-white);
+}
+#section1 .section_content .boxs p:nth-of-type(2) {
+    width: 100%;
+    text-transform: none;
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--text-color);
+    margin: 0;
+}
+#section1 .section_content .boxs ul {
+    list-style-type: disc;
+    width: 100%;
+    padding-left: 20px;
+    margin: 0;
+}
+#section1 .section_content .boxs ul li {
+    color: var(--text-color);
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+#section1 .section_content .boxs ul li::marker {
+    color: var(--primary-color);
+}
+#section1 .section_content .boxs #btns {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+#section1 .section_content .boxs #btns .details a {
+    color: var(--primary-color);
+    background-color: transparent;
+    border-radius: 10px;
+    border: 1px solid var(--primary-color);
+    font-size: 13px;
+    font-weight: 600;
+    width: fit-content;
+    height: fit-content;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    transition: all ease 0.3s;
+}
+#section1 .section_content .boxs #btns .details a:hover {
+    background-color: #ff9d0010;
+}
+#section1 .section_content .boxs #btns .booknow a {
+    color: black;
+    background-color: var(--primary-color);
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    width: fit-content;
+    height: fit-content;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    transition: all ease 0.3s;
+}
+#section1 .section_content .boxs #btns .booknow a:hover {
+    box-shadow: 0 5px 10px #ff9d0050;
+}
+#section2 .section_content {
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+#section3 .section_content {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 10px 20px;
+    justify-content: center;
+}
+#section3 .section_content .boxs2 {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    gap: 20px;
+    padding: 30px;
+    background-color: var(--boxbg-color);
+    border-radius: 10px;
+    border: solid 0.5px #FF9D00;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+#section3 .section_content .boxs2 h1 {
+    font-size: 20px;
+}
+#section3 .section_content .boxs2_1 ul li {
+    font-size: 12px;
+    margin-bottom: 20px;
+}
+#section3 .section_content .boxs2_2 iframe {
+    width: 100%;
+    height: 160px;
+    border-radius: 10px;
+}
+#section3 .section_content .boxs2_2 #access {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+#section3 .section_content .boxs2_2 #access .access {
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+#section3 .section_content .boxs2_2 #access .access img {
+    width: 20px;
+    height: 20px;
+}
+#section3 .section_content .boxs2_2 #access .access p {
+    font-size: 12px;
+}
+}
+    </style>
+  </head>
+
+  <body>
+    <div id="page">
+      <nav>
+      <div class="logo">
+        <a href="index.html"><img src="./Images/Logo/Small.png" alt="Logo" /></a>
+        <div>
+          <button class="theme1">🌙</button>
+          <div class="hamburger">☰</div>
+        </div>
+      </div>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="facilities.html">Facilities</a>
+        <a href="membership.html">Membership</a>
+        <a href="contact.html">Contact</a>
+        <a href="about.html">About</a>
+      </div>
+      <div class="nav-act">
+        <button class="theme">🌙</button>
+        <a href="#">LOG IN</a>
+        <a href="#">SIGN UP</a>
+      </div>
+      <div id="hamburger">☰</div>
+    </nav>
+    <div class="header">
+      <div class="header-text">
+        <h1>ORION</h1>
+        <h1>SPORTS ARENA</h1>
+        <p>
+          From professional football fields to high-performance fitness zones<br />
+          premium spaces built to elevate every athlete.
+        </p>
+        <div class="header-button">
+          <a href="facilities.html" class="a1">Explore Facilities</a>
+          <a href="membership.html" class="a1">Become a Member</a>
+        </div>
+      </div>
+      <div id="stats">
+        <div>
+          <div class="sts">
+            <p>3+</p>
+          </div>
+          <div>Facilities</div>
+        </div>
+        <div>
+          <div class="sts">
+            <p>620+</p>
+          </div>
+          <div>Members</div>
+        </div>
+        <div>
+          <div class="sts">
+            <p>17H</p>
+          </div>
+          <div>Daily Access</div>
+        </div>
+        <div>
+          <div class="sts">
+            <p>98%</p>
+          </div>
+          <div>Satisfaction</div>
+        </div>
+      </div>
+    </div>
+    <div id="section1">
+      <div class="title_section">
+        <p>World-Class</p>
+        <h1><span>Our</span> Facilities</h1>
+        <p>Three premium venues designed for athletes at every level</p>
+      </div>
+      <div class="section_content">
+        <div class="boxs">
+          <p>⚽</p>
+          <h1><span>Professional</span> Football Field</h1>
+          <p>
+            FIFA-standard turf for training, matches, and competitive games.
+          </p>
+          <ul>
+            <li>FIFA-standard artificial turf</li>
+            <li>Night lighting for evening matches</li>
+            <li>Changing rooms & showers</li>
+          </ul>
+          <div id="btns">
+            <div class="details">
+              <a href="facilities.html">Details</a>
+            </div>
+            <div class="booknow">
+              <a href="membership.html">Book Now</a>
+            </div>
+          </div>
+        </div>
+        <div class="boxs">
+          <p>🏀</p>
+          <h1><span>Indoor</span> Basketball Courts</h1>
+          <p>Professional hardwood courts for casual and competitive play.</p>
+          <ul>
+            <li>Professional hardwood flooring</li>
+            <li>LED lighting & digital scoreboard</li>
+            <li>Regulation-size courts</li>
+          </ul>
+          <div id="btns">
+            <div class="details">
+              <a href="facilities.html">Details</a>
+            </div>
+            <div class="booknow">
+              <a href="membership.html">Book Now</a>
+            </div>
+          </div>
+        </div>
+        <div class="boxs">
+          <p>🏋️</p>
+          <h1><span>Fitness & Training</span> Arena</h1>
+          <p>
+            Full equipment, certified trainers, and motivating group sessions.
+          </p>
+          <ul>
+            <li>Strength & resistance machines</li>
+            <li>Certified trainers available</li>
+            <li>Functional training zone</li>
+          </ul>
+          <div id="btns">
+            <div class="details">
+              <a href="facilities.html">Details</a>
+            </div>
+            <div class="booknow">
+              <a href="membership.html">Book Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="section2">
+      <div class="title_section">
+        <p>Community</p>
+        <h1><span>Member</span> Stories</h1>
+      </div>
+      <div id="section_content_holder">
+        <div class="section_content">
+          <div class="boxs1">
+            <p>★★★★☆</p>
+            <p>
+              "Best sports facility in the city. The football field is
+              immaculate and the night lighting makes evening sessions feel like
+              pro matches."
+            </p>
+            <div class="profile">
+              <img src="./Images/Profiles/1.jfif" alt="profile" />
+              <div class="profile_description">
+                <p>Marcus Johnson</p>
+                <p>Football Member</p>
+              </div>
+            </div>
+          </div>
+          <div class="boxs1">
+            <p>★★★★★</p>
+            <p>
+              "Coach Lisa's basketball clinics completely transformed my game.
+              The courts are regulation size and the scoreboard system is
+              excellent."
+            </p>
+            <div class="profile">
+              <img src="./Images/Profiles/2.jfif" alt="profile" />
+              <div class="profile_description">
+                <p>Sarah Williams</p>
+                <p>Basketball Member</p>
+              </div>
+            </div>
+          </div>
+          <div class="boxs1">
+            <p>★★★★★</p>
+            <p>
+              "The All-Access membership is worth every penny. I train in the
+              gym weekdays and play basketball weekends. Staff is incredibly
+              friendly."
+            </p>
+            <div class="profile">
+              <img src="./Images/Profiles/3.jfif" alt="profile" />
+              <div class="profile_description">
+                <p>Alex Torres</p>
+                <p>All-Access Member</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="section3">
+      <div class="title_section">
+        <p>Standards</p>
+        <h1><span>Safety &</span> Access</h1>
+      </div>
+      <div class="section_content">
+        <div class="boxs2 boxs2_1">
+          <h1><span>Safety & Comfort</span> Standards</h1>
+          <ul>
+            <li>Daily cleaning & maintenance</li>
+            <li>Professional-grade equipment</li>
+            <li>Emergency exits & first-aid kits</li>
+            <li>Secure access control</li>
+            <li>Friendly & trained staff</li>
+          </ul>
+        </div>
+        <div class="boxs2 boxs2_2">
+          <h1><span>Location &</span> Access</h1>
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1692.9990379233518!2d-4.445681826477792!3d31.933809597516326!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sma!4v1775774339367!5m2!1sen!2sma"
+            style="border: 0"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+          <div id="access">
+            <div class="access">
+              <img src="./Images/Location/parking.png" alt="access" />
+              <p>Free Parking</p>
+            </div>
+            <div class="access">
+              <img src="./Images/Location/wifi.png" alt="access" />
+              <p>Free WiFi</p>
+            </div>
+            <div class="access">
+              <img src="./Images/Location/shower.png" alt="access" />
+              <p>Showers & Lockers</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <div id="footer_content">
+        <div id="info">
+          <img src="./Images/Logo/Small.png" alt="logo">
+          <p>Premium sports facilities built to elevate every athlete. Train harder, play smarter, win bigger.</p>
+          <div id="socials">
+            <a href="#"><img src="./Images/Footer/socials/facebook.png" alt="facebook"></a>
+            <a href="#"><img src="./Images/Footer/socials/twitter.png" alt="x"></a>
+            <a href="#"><img src="./Images/Footer/socials/mdi_instagram.png" alt="instagram"></a>
+            <a href="#"><img src="./Images/Footer/socials/youtube.png" alt="youtube"></a>
+          </div>
+        </div>
+        <div id="links">
+          <div class="links">
+            <h1>LINKS</h1>
+            <ul>
+              <li><a href="#page">Home</a></li>
+              <li><a href="facilities.html">Facilities</a></li>
+              <li><a href="membership.html">Membership</a></li>
+              <li><a href="contact.html">Contact</a></li>
+              <li><a href="about.html">About</a></li>
+            </ul>
+          </div>
+          <div class="links">
+            <h1>CONTACT</h1>
+            <ul>
+              <li><a href="#">05 00 00 00 01</a></li>
+              <li><a href="#">WhatsApp</a></li>
+              <li><a href="#">orionsportsarena@gmail.com</a></li>
+              <li><a href="#">Send a Message</a></li>
+              <li><a href="#">Client Support</a></li>
+            </ul>
+          </div>
+        </div>
+        <div id="sponsors">
+          <h1>Sponsored By</h1>
+          <div class="sponsors_images">
+            <a href="#"><img src="./Images/Footer/sponsors/fifa.png" alt="fifa" class="w50"></a>
+            <a href="#"><img src="./Images/Footer/sponsors/nike.png" alt="nike" class="w80" id="nike"></a>
+            <a href="#"><img src="./Images/Footer/sponsors/nba.png" alt="nba" class="w50"></a>
+            <a href="#"><img src="./Images/Footer/sponsors/Mastercard.png" alt="mastercard" class="w80"></a>
+          </div>
+        </div>
+      </div>
+      <div id="copyright">
+        <p>© 2026 Orion Sports Arena. All rights reserved.</p>
+        <p>Built with ❤️ for athletes</p>
+      </div>
+    </footer>
+    </div>
+    <script src="navfooter.js"></script>
+  </body>
+</html>

@@ -1,0 +1,539 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="navfooterstyle.css" />
+    <link rel="icon" href="./Images/Logo/Big.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Orion Sports Arena</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <style>
+        section {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+    padding: 0 80px; 
+}
+.section_content {
+    width: 100%;
+    height: fit-content;
+    display: grid;
+    grid-auto-flow: column;
+    align-items: center;
+    padding: 20px;
+    gap: 0px;
+    border-radius: 10px;
+    border-left: 2px solid #FF9D00;
+    background-color: var(--boxbg-color);
+}
+.section_content .sub_content {
+    display: flex;
+    flex-direction: column;
+    gap: 17px;
+    padding: 0 20px;
+}
+.section_content .sub_content .emoji {
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    gap: 10px;
+    padding: 10px 20px;
+    align-items: center;
+    justify-content: center;
+    background-color: #FF9D0020;
+    border: 1px solid #FF9D00;
+    border-radius: 10px;
+}
+.section_content .sub_content .emoji p {
+    font-weight: 800;
+    margin: 0;
+    padding: 0;
+}
+.section_content .sub_content .emoji p:first-of-type {
+    font-size: 24px;
+}
+.section_content .sub_content .emoji p:last-of-type {
+    font-size: 16px;
+    color: #FF9D00;
+}
+.section_content .sub_content h1 {
+    font-size: 32px;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin: 0;
+    padding: 0;
+}
+.section_content .sub_content h1 span {
+    color: var(--text-white);
+}
+.section_content .sub_content p {
+    color: var(--text-color);
+    font-size: 14px;
+    margin: 0;
+    padding: 0;
+}
+.section_content .sub_content .coach {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    gap: 10px;
+    border-radius: 10px;
+    background-color: var(--boxbg-color);
+    border: 1px solid #FF9D0010;
+    padding: 10px 15px;
+    justify-content: center;
+    align-items: center;
+}
+.section_content .sub_content .coach img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+.section_content .sub_content .coach .info {
+    width: 100%;
+    height: fit-content;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+}
+.section_content .sub_content .coach .info p:first-of-type {
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--text-white);
+}
+.section_content .sub_content .coach .info p:last-of-type {
+    font-size: 10px;
+    color: var(--text-color);
+}
+.section_content .sub_description {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    align-items: center;
+}
+.section_content .sub_description .sub_list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.section_content .sub_description .sub_list ul {
+    list-style-type: disc;
+    padding-left: 20px;
+    margin: 0;
+}
+.section_content .sub_description .sub_list ul li {
+    color: var(--text-color);
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+.section_content .sub_description .sub_list ul li::marker {
+    color: var(--primary-color);
+}
+.section_content .pricing {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    padding: 25px 20px;
+    gap: 50px;
+    align-items: center;
+    justify-content: center;
+    background-color: #FF9D0010;
+    border-radius: 10px;
+    border: 1px solid #FF9D00;
+}
+.section_content .pricing .pricing1 {
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+}
+.section_content .pricing .pricing1 p {
+    color: var(--text-color);
+    text-transform: uppercase;
+    font-size: 13px;
+    margin: 0;
+    padding: 0;
+}
+.section_content .pricing .pricing1 p sup {
+    font-size: 20px;
+    color: var(--primary-color);
+    font-weight: 600;
+    vertical-align: top;
+}
+.section_content .pricing .pricing1 p span {
+    font-size: 64px;
+    color: var(--primary-color);
+    font-weight: 600;
+}
+.section_content .pricing .pricing2 {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
+.section_content .pricing .pricing2 .pricing2_btn {
+    width: 100%;
+    height: fit-content;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 800;
+}
+.section_content .pricing .pricing2 .pricing2_btn1 {
+    background-color: #FF9D00;
+    color: var(--text-white);
+    transition: all ease 0.3s;
+}
+.section_content .pricing .pricing2 .pricing2_btn1:hover {
+    box-shadow: 0 5px 10px #ff9d0050;
+    cursor: pointer;
+}
+.section_content .pricing .pricing2 .pricing2_btn2 {
+    border: 0.5px solid #FF9D00;
+    color: #FF9D00;
+    transition: all ease 0.3s;
+}
+.section_content .pricing .pricing2 .pricing2_btn2:hover {
+    background-color: #ff9d0020;
+    cursor: pointer;
+}
+/*------------------ Color green ------------------*/
+.section_content:nth-of-type(3) {
+    border-left: 2px solid #AAFF00;
+}
+.section_content:nth-of-type(3) .sub_content .emoji {
+    background-color: #AAFF0020;
+    border: 1px solid #AAFF00;
+}
+.section_content:nth-of-type(3) .sub_content .emoji p:last-of-type {
+    color: #AAFF00;
+}
+.section_content:nth-of-type(3) .sub_content h1 {
+    color: #AAFF00;
+}
+.section_content:nth-of-type(3) .sub_content .coach {
+    border: 1px solid #AAFF0010;
+}
+.section_content:nth-of-type(3) .sub_description .sub_list ul li::marker {
+    color: #AAFF00;
+}
+.section_content:nth-of-type(3) .pricing {
+    background-color: #AAFF0010;
+    border: 1px solid #AAFF00;
+}
+.section_content:nth-of-type(3) .pricing .pricing1 p sup {
+    color: #AAFF00;
+}
+.section_content:nth-of-type(3) .pricing .pricing1 p span {
+    color: #AAFF00;
+}
+.section_content:nth-of-type(3) .pricing .pricing2 .pricing2_btn1 {
+    background-color: #AAFF00;
+}
+.section_content:nth-of-type(3) .pricing .pricing2 .pricing2_btn1:hover {
+    box-shadow: 0 5px 10px #AAFF0050;
+}
+.section_content:nth-of-type(3) .pricing .pricing2 .pricing2_btn2 {
+    border: 0.5px solid #AAFF00;
+    color: #AAFF00;
+}
+.section_content:nth-of-type(3) .pricing .pricing2 .pricing2_btn2:hover {
+    background-color: #AAFF0020;
+}
+/*------------------ Color blue ------------------*/
+.section_content:nth-of-type(4) {
+    border-left: 2px solid #3B82F6;
+}
+.section_content:nth-of-type(4) .sub_content .emoji {
+    background-color: #3B82F620;
+    border: 1px solid #3B82F6;
+}
+.section_content:nth-of-type(4) .sub_content .emoji p:last-of-type {
+    color: #3B82F6;
+}
+.section_content:nth-of-type(4) .sub_content h1 {
+    color: #3B82F6;
+}
+.section_content:nth-of-type(4) .sub_content .coach {
+    border: 1px solid #3B82F610;
+}
+.section_content:nth-of-type(4) .sub_description .sub_list ul li::marker {
+    color: #3B82F6;
+}
+.section_content:nth-of-type(4) .pricing {
+    background-color: #3B82F610;
+    border: 1px solid #3B82F6;
+}
+.section_content:nth-of-type(4) .pricing .pricing1 p sup {
+    color: #3B82F6;
+}
+.section_content:nth-of-type(4) .pricing .pricing1 p span {
+    color: #3B82F6;
+}
+.section_content:nth-of-type(4) .pricing .pricing2 .pricing2_btn1 {
+    background-color: #3B82F6;
+}
+.section_content:nth-of-type(4) .pricing .pricing2 .pricing2_btn1:hover {
+    box-shadow: 0 5px 10px #3B82F650;
+}
+.section_content:nth-of-type(4) .pricing .pricing2 .pricing2_btn2 {
+    border: 0.5px solid #3B82F6;
+    color: #3B82F6;
+}
+.section_content:nth-of-type(4) .pricing .pricing2 .pricing2_btn2:hover {
+    background-color: #3B82F620;
+}
+/*------------------- Media ------------------------*/
+@media (max-width: 500px) {
+    section {
+    gap: 20px;
+    padding: 0 15px; 
+}
+.section_content {
+    grid-auto-flow: row;
+    gap: 10px;
+}
+}
+    </style>
+</head>
+  <body>
+    <div id="page">
+        <nav>
+      <div class="logo">
+        <a href="index.html"><img src="./Images/Logo/Small.png" alt="Logo" /></a>
+        <div>
+          <button class="theme1">🌙</button>
+          <div class="hamburger">☰</div>
+        </div>
+      </div>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="facilities.html">Facilities</a>
+        <a href="membership.html">Membership</a>
+        <a href="contact.html">Contact</a>
+        <a href="about.html">About</a>
+      </div>
+      <div class="nav-act">
+        <button class="theme">🌙</button>
+        <a href="#">LOG IN</a>
+        <a href="#">SIGN UP</a>
+      </div>
+      <div id="hamburger">☰</div>
+    </nav>
+    <section>
+        <div class="title_section">
+        <p></p>
+        <h1><span>Pick Your</span> Sport</h1>
+        <p>Dedicated subscriptions for each sport — go deep in what you lovel</p>
+        </div>
+        <div class="section_content">
+            <div class="sub_content">
+                <div class="emoji">
+                    <p>⚽</p>
+                    <p>Football</p>
+                </div>
+                <h1><span>Football</span> Membership</h1>
+                <p>Unlimited access to our FIFA-standard football field, weekly training sessions with Coach Mike, and exclusive member tournaments. The complete football experience.</p>
+                <div class="coach">
+                    <img src="./Images/Subscriptions/coachs/flick.jfif" alt="foot">
+                    <div class="info">
+                        <p>Coach Flick</p>
+                        <p>Head Football Coach · Tue & Thu 6–8 PM</p>
+                    </div>
+                </div>
+                <div class="sub_description">
+                <div class="sub_list">
+                    <ul>
+                    <li>Unlimited football field access</li>
+                    <li>Goalkeeper & specialty clinics (Fridays)</li>
+                    <li>Member locker & storage access</li>
+                    </ul>
+                </div>
+                <div class="sub_list">
+                    <ul>
+                    <li>Weekly group training sessions (Tue & Thu)</li>
+                    <li>Season tournament participation</li>
+                    <li>20% off facility rentals</li>
+                    </ul>
+                </div>
+                </div>
+            </div>
+            <div class="pricing">
+                <div class="pricing1">
+                    <p>Starting from</p>
+                    <p><sup>$</sup><span>45</span>/mo</p>
+                    <p>7 days free · cancel anytime</p>
+                </div>
+                <div class="pricing2">
+                    <div class="pricing2_btn pricing2_btn1">
+                        Get Football Plan
+                    </div>
+                    <div class="pricing2_btn pricing2_btn2">
+                        Book a Trial Session
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div class="section_content">
+            <div class="sub_content">
+                <div class="emoji">
+                    <p>🏀</p>
+                    <p>Basketball</p>
+                </div>
+                <h1><span>Basketball</span> Membership</h1>
+                <p>Full access to our professional indoor basketball courts, weekly coaching clinics with Coach Lisa, and league play. From casual pickup games to competitive league action.</p>
+                <div class="coach">
+                    <img src="./Images/Subscriptions/coachs/basketball.jfif" alt="foot">
+                    <div class="info">
+                        <p>Coach Joahn</p>
+                        <p>Head Basketball Coach · Wed 7–9 PM</p>
+                    </div>
+                </div>
+                <div class="sub_description">
+                <div class="sub_list">
+                    <ul>
+                    <li>Unlimited basketball court access</li>
+                    <li>ORION League season participation</li>
+                    <li>Digital scoreboard priority booking</li>
+                    </ul>
+                </div>
+                <div class="sub_list">
+                    <ul>
+                    <li>Weekly coaching clinics (Wednesdays)</li>
+                    <li>Ball handling & shooting drills</li>
+                    <li>20% off facility rentals</li>
+                    </ul>
+                </div>
+                </div>
+            </div>
+            <div class="pricing">
+                <div class="pricing1">
+                    <p>Starting from</p>
+                    <p><sup>$</sup><span>50</span>/mo</p>
+                    <p>7 days free · cancel anytime</p>
+                </div>
+                <div class="pricing2">
+                    <div class="pricing2_btn pricing2_btn1">
+                        Get basketball Plan
+                    </div>
+                    <div class="pricing2_btn pricing2_btn2">
+                        Book a Trial Session
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div class="section_content">
+            <div class="sub_content">
+                <div class="emoji">
+                    <p>🏋️</p>
+                    <p>Fitness</p>
+                </div>
+                <h1><span>Fitness & Training</span> Membership</h1>
+                <p>Unlimited access to our fully equipped fitness arena with certified trainers on-site. Morning bootcamps, strength training, cardio, and personalized workout plans.</p>
+                <div class="coach">
+                    <img src="./Images/Subscriptions/coachs/fitness.jfif" alt="foot">
+                    <div class="info">
+                        <p>Trainer Dave</p>
+                        <p>Head Fitness Trainer · Mon & Sat 6:30 AM</p>
+                    </div>
+                </div>
+                <div class="sub_description">
+                <div class="sub_list">
+                    <ul>
+                    <li>Unlimited fitness arena access</li>
+                    <li>Sprint & agility sessions (Sundays)</li>
+                    <li>Nutrition tips & tracking dashboard</li>
+                    </ul>
+                </div>
+                <div class="sub_list">
+                    <ul>
+                    <li>Morning bootcamps (Mon & Sat)</li>
+                    <li>AI-powered personalized workout plans</li>
+                    <li>Progress tracker with monthly reports</li>
+                    </ul>
+                </div>
+                </div>
+            </div>
+            <div class="pricing">
+                <div class="pricing1">
+                    <p>Starting from</p>
+                    <p><sup>$</sup><span>40</span>/mo</p>
+                    <p>7 days free · cancel anytime</p>
+                </div>
+                <div class="pricing2">
+                    <div class="pricing2_btn pricing2_btn1">
+                        Get Fitness Plan
+                    </div>
+                    <div class="pricing2_btn pricing2_btn2">
+                        Book a Trial Session
+                    </div>
+                </div>
+            </div>
+            </div>
+    </section>
+    <footer>
+      <div id="footer_content">
+        <div id="info">
+          <img src="./Images/Logo/Small.png" alt="logo">
+          <p>Premium sports facilities built to elevate every athlete. Train harder, play smarter, win bigger.</p>
+          <div id="socials">
+            <a href="#"><img src="./Images/Footer/socials/facebook.png" alt="facebook"></a>
+            <a href="#"><img src="./Images/Footer/socials/twitter.png" alt="x"></a>
+            <a href="#"><img src="./Images/Footer/socials/mdi_instagram.png" alt="instagram"></a>
+            <a href="#"><img src="./Images/Footer/socials/youtube.png" alt="youtube"></a>
+          </div>
+        </div>
+        <div id="links">
+          <div class="links">
+            <h1>LINKS</h1>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="facilities.html">Facilities</a></li>
+              <li><a href="#page">Membership</a></li>
+              <li><a href="contact.html">Contact</a></li>
+              <li><a href="about.html">About</a></li>
+            </ul>
+          </div>
+          <div class="links">
+            <h1>CONTACT</h1>
+            <ul>
+              <li><a href="#">05 00 00 00 01</a></li>
+              <li><a href="#">WhatsApp</a></li>
+              <li><a href="#">orionsportsarena@gmail.com</a></li>
+              <li><a href="#">Send a Message</a></li>
+              <li><a href="#">Client Support</a></li>
+            </ul>
+          </div>
+        </div>
+        <div id="sponsors">
+          <h1>Sponsored By</h1>
+          <div class="sponsors_images">
+            <a href="#"><img src="./Images/Footer/sponsors/fifa.png" alt="fifa" class="w50"></a>
+            <a href="#"><img src="./Images/Footer/sponsors/nike.png" alt="nike" class="w80" id="nike"></a>
+            <a href="#"><img src="./Images/Footer/sponsors/nba.png" alt="nba" class="w50"></a>
+            <a href="#"><img src="./Images/Footer/sponsors/Mastercard.png" alt="mastercard" class="w80"></a>
+          </div>
+        </div>
+      </div>
+      <div id="copyright">
+        <p>© 2026 Orion Sports Arena. All rights reserved.</p>
+        <p>Built with ❤️ for athletes</p>
+      </div>
+    </footer>
+    </div>
+    <script src="navfooter.js"></script>
+  </body>
+</html>

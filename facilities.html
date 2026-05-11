@@ -1,0 +1,524 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="navfooterstyle.css" />
+    <link rel="icon" href="./Images/Logo/Big.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Orion Sports Arena</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <style>
+      section {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+    padding: 0 80px; 
+}
+.section_content {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    gap: 0px;
+    border-radius: 10px;
+    background-color: var(--boxbg-color);
+}
+.section_content img {
+    width: 50%;
+    border-radius: 10px 0 0 10px;
+    filter: opacity(80%);
+}
+.section_content:nth-of-type(3) img {
+    border-radius: 0 10px 10px 0;
+}
+.section_content .sub_content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+}
+.section_content .sub_content h1 {
+    font-size: 32px;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin: 0;
+    padding: 0;
+}
+.section_content .sub_content h1 span {
+    color: var(--text-white);
+}
+.section_content .sub_content p {
+    color: var(--text-color);
+    font-size: 14px;
+    margin: 0;
+    padding: 0;
+}
+.section_content .sub_description {
+    display: flex;
+    gap: 10px;
+}
+.section_content .sub_description .sub_list {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.section_content .sub_description .sub_list h1 {
+    color: var(--primary-color);
+    font-size: 15px;
+    font-weight: 600;
+}
+.section_content .sub_description .sub_list ul {
+    list-style-type: disc;
+    padding-left: 20px;
+    margin: 0;
+}
+.section_content .sub_description .sub_list ul li {
+    color: var(--text-color);
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+.section_content .sub_description .sub_list ul li::marker {
+    color: var(--primary-color);
+}
+.section_content .sub_buttons {
+    display: flex;
+    padding: 5px 0px;
+    gap: 10px;
+    align-items: flex-start;
+}
+.section_content .sub_buttons .sub_btn {
+    width: fit-content;
+    height: fit-content;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+}
+.section_content .sub_buttons .sub_btn1 {
+    border: 0.5px solid #FF9D00;
+    transition: all ease 0.3s;
+}
+.section_content .sub_buttons .sub_btn1 a {
+  color: #FF9D00;
+  text-decoration: none;
+  width: 100%;
+  height: 100%;
+}
+.section_content .sub_buttons .sub_btn1:hover {
+    background-color: #ff9d0010;
+    cursor: pointer;
+}
+.section_content .sub_buttons .sub_btn2 {
+    background-color: #FF9D00;
+    color: black;
+    transition: all ease 0.3s;
+}
+.section_content .sub_buttons .sub_btn2:hover {
+    box-shadow: 0 5px 10px #ff9d0050;
+    cursor: pointer;
+}
+.overlay {
+  width: 100%;
+  height: 100vh;
+  backdrop-filter: blur(4px);
+  background-color: #ffffff05;
+  margin: auto;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+}
+.border {
+    width: 30%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+    border-radius: 10px;
+    border: 0.5px solid #FF9D00;
+    background-color: var(--mainbg-color);
+}
+.border h1 {
+    font-size: 32px;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin: 0;
+    padding: 0;
+}
+.border h1 span {
+    color: var(--text-white);
+}
+.overlayform h2 {
+    color: var(--primary-color);
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 800;
+    margin: 0;
+    padding: 0;
+}
+.overlayform div {
+    display: flex;
+    width: 100%;
+    height: fit-content;
+    justify-content: space-between;
+    align-items: center;
+}
+.overlayform h3 {
+    color: var(--text-color);
+    font-size: 13px;
+    margin: 0;
+    padding: 0;
+}
+.overlayform input, .overlayform select {
+    border: 0.5px solid #FF9D00;
+    background-color: transparent;
+    border-radius: 10px;
+    color: var(--text-white);
+    font-size: 18px;
+    padding: 10px;
+}
+.overlayform input:focus, .overlayform select:focus {
+    outline: none;
+    box-shadow: 0 5px 5px #ff9d0050;
+}
+.overlayform input::placeholder, .overlayform select::placeholder {
+    padding: 5px;
+    color: var(--text-color);
+    font-size: 15px;
+}
+.overlayform input {
+    height: 50px;
+}
+.overlayform textarea {
+    height: 180px;
+}
+.overlayform button {
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background-color: var(--primary-color);
+    color: black;
+    font-size: 20px;
+    font-weight: 600;
+    font-family: "Montserrat", sans-serif;
+    padding: 10px;
+    border: none;
+}
+.close_overlay {
+  background-color: transparent;
+  color: var(--primary-color);
+  font-size: 20px;
+  padding: 4px 8px;
+  border-radius: 5px;
+  border: solid 0.5px #FF9D00;
+  transition: all ease 0.2s;
+  width: fit-content;
+}
+.close_overlay:hover {
+  background-color: #ff9d0010;
+  scale:  1.1;
+}
+/*--------------------- Media ------------------*/
+@media (max-width: 500px) {
+  section {
+    padding: 0 15px;
+    gap: 20px; 
+}
+.section_content {
+    flex-wrap: wrap;
+}
+.section_content img {
+    width: 100%;
+    border-radius: 10px 0 0 10px;
+    filter: opacity(80%);
+}
+.section_content:nth-of-type(3) img {
+    border-radius: 10px;
+    order: -1;
+}
+.border {
+    width: 90%;
+}
+.border h1 {
+    font-size: 22px;
+}
+.overlayform h2 {
+    font-size: 10px;
+}
+.overlayform h3 {
+    font-size: 12px
+}
+.section_content .sub_buttons .sub_btn {
+    font-size: 10px
+}
+}
+    </style>
+  </head>
+
+  <body>
+    <div id="page">
+      <nav>
+      <div class="logo">
+        <a href="index.html"><img src="./Images/Logo/Small.png" alt="Logo" /></a>
+        <div>
+          <button class="theme1">🌙</button>
+          <div class="hamburger">☰</div>
+        </div>
+      </div>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="facilities.html">Facilities</a>
+        <a href="membership.html">Membership</a>
+        <a href="contact.html">Contact</a>
+        <a href="about.html">About</a>
+      </div>
+      <div class="nav-act">
+        <button class="theme">🌙</button>
+        <a href="#">LOG IN</a>
+        <a href="#">SIGN UP</a>
+      </div>
+      <div id="hamburger">☰</div>
+    </nav>
+    <section>
+      <div class="title_section">
+        <p>World-Class</p>
+        <h1><span>Our</span> Facilities</h1>
+        <p>Three premium venues designed for athletes at every level</p>
+      </div>
+      <div class="section_content">
+          <img src="./Images/Subscriptions/2/foot.png" alt="football">
+          <div class="sub_content">
+            <h1><span>Football</span> Field</h1>
+            <p>Our football field is designed to meet professional standards, offering a safe, high-quality playing surface suitable for training sessions, friendly matches, and competitive games.</p>
+            <div class="sub_description">
+              <div class="sub_list">
+                <h1>Key Features :</h1>
+                <ul>
+                  <li>FIFA-standard artificial turf</li>
+                  <li>Shock-absorbent surface for injury prevention</li>
+                  <li>Night lighting for evening matches</li>
+                  <li>Spacious sidelines and safety zones</li>
+                  <li>Changing rooms & showers access</li>
+                  <li>Scoreboard & seating area</li>
+                </ul>
+              </div>
+              <div class="sub_list">
+                <h1>Ideal For :</h1>
+                <ul>
+                  <li>Training sessions</li>
+                  <li>Friendly & competitive matches</li>
+                  <li>Tournaments & academies</li>
+                  <li>School & corporate events</li>
+                </ul>
+              </div>
+            </div>
+            <div class="sub_buttons">
+              <div class="sub_btn sub_btn1">
+                <a href="membership.html">View Schedule</a>
+              </div>
+              <div class="sub_btn sub_btn2 sub_field">
+                Rent the Field →
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="section_content">
+          <div class="sub_content">
+            <h1><span>Basketball</span> Court</h1>
+            <p>High-quality indoor courts designed for speed, precision, and comfort — perfect for casual pickup games or serious league competition with professional infrastructure.</p>
+            <div class="sub_description">
+              <div class="sub_list">
+                <h1>Key Features :</h1>
+                <ul>
+                  <li>Professional hardwood flooring</li>
+                  <li>Regulation-size courts</li>
+                  <li>Anti-slip surface</li>
+                  <li>LED lighting system</li>
+                  <li>Digital scoreboard</li>
+                  <li>Ventilated indoor environment</li>
+                </ul>
+              </div>
+              <div class="sub_list">
+                <h1>Ideal For :</h1>
+                <ul>
+                  <li>Pickup games</li>
+                  <li>Team training</li>
+                  <li>Leagues & tournaments</li>
+                  <li>Coaching clinics</li>
+                </ul>
+              </div>
+            </div>
+            <div class="sub_buttons">
+              <div class="sub_btn sub_btn1">
+                <a href="membership.html">View Availability</a>
+              </div>
+              <div class="sub_btn sub_btn2 sub_court">
+                Rent a Court →
+              </div>
+            </div>
+          </div>
+          <img src="./Images/Subscriptions/2/basket.png" alt="basketball">
+        </div>
+        <div class="section_content">
+          <img src="./Images/Subscriptions/2/fitness.png" alt="fitness">
+          <div class="sub_content">
+            <h1><span>Fitness & Training</span> Arena</h1>
+            <p>A fully equipped fitness arena built for strength, conditioning, and performance training in a modern and motivating environment with certified professional trainers.</p>
+            <div class="sub_description">
+              <div class="sub_list">
+                <h1>Key Features :</h1>
+                <ul>
+                  <li>Strength & resistance machines</li>
+                  <li>Free weights area</li>
+                  <li>Functional training zone</li>
+                  <li>Cardio machines (treadmills, bikes)</li>
+                  <li>Certified trainers on-site</li>
+                  <li>Clean locker rooms</li>
+                </ul>
+              </div>
+              <div class="sub_list">
+                <h1>Ideal For :</h1>
+                <ul>
+                  <li>Individual workouts</li>
+                  <li>Athlete conditioning</li>
+                  <li>Group training sessions</li>
+                  <li>Personal training</li>
+                </ul>
+              </div>
+            </div>
+            <div class="sub_buttons">
+              <div class="sub_btn sub_btn1">
+                <a href="membership.html">View Membership Plans</a>
+              </div>
+              <div class="sub_btn sub_btn2">
+                Join Fitness Arena →
+              </div>
+            </div>
+          </div>
+        </div>
+    </section>
+    <footer>
+      <div id="footer_content">
+        <div id="info">
+          <img src="./Images/Logo/Small.png" alt="logo">
+          <p>Premium sports facilities built to elevate every athlete. Train harder, play smarter, win bigger.</p>
+          <div id="socials">
+            <a href="#"><img src="./Images/Footer/socials/facebook.png" alt="facebook"></a>
+            <a href="#"><img src="./Images/Footer/socials/twitter.png" alt="x"></a>
+            <a href="#"><img src="./Images/Footer/socials/mdi_instagram.png" alt="instagram"></a>
+            <a href="#"><img src="./Images/Footer/socials/youtube.png" alt="youtube"></a>
+          </div>
+        </div>
+        <div id="links">
+          <div class="links">
+            <h1>LINKS</h1>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="#page">Facilities</a></li>
+              <li><a href="membership.html">Membership</a></li>
+              <li><a href="contact.html">Contact</a></li>
+              <li><a href="about.html">About</a></li>
+            </ul>
+          </div>
+          <div class="links">
+            <h1>CONTACT</h1>
+            <ul>
+              <li><a href="#">05 00 00 00 01</a></li>
+              <li><a href="#">WhatsApp</a></li>
+              <li><a href="#">orionsportsarena@gmail.com</a></li>
+              <li><a href="#">Send a Message</a></li>
+              <li><a href="#">Client Support</a></li>
+            </ul>
+          </div>
+        </div>
+        <div id="sponsors">
+          <h1>Sponsored By</h1>
+          <div class="sponsors_images">
+            <a href="#"><img src="./Images/Footer/sponsors/fifa.png" alt="fifa" class="w50"></a>
+            <a href="#"><img src="./Images/Footer/sponsors/nike.png" alt="nike" class="w80" id="nike"></a>
+            <a href="#"><img src="./Images/Footer/sponsors/nba.png" alt="nba" class="w50"></a>
+            <a href="#"><img src="./Images/Footer/sponsors/Mastercard.png" alt="mastercard" class="w80"></a>
+          </div>
+        </div>
+      </div>
+      <div id="copyright">
+        <p>© 2026 Orion Sports Arena. All rights reserved.</p>
+        <p>Built with ❤️ for athletes</p>
+      </div>
+    </footer>
+    </div>
+    <div class="overlay overlay1">
+      <div class="overlayform border">
+                <div>
+                  <h1><span>Book a</span> Football Field</h1>
+                  <button class="close_overlay">X</button>
+                </div>
+                <h3>Fill in the form — we'll confirm your booking within 24 hours.</h3>
+                <h2>Full Name</h2>
+                <input type="text" name="user">
+                <h2>Email</h2>
+                <input type="email" name="email" placeholder="your@email.com">
+                <h2>Phone</h2>
+                <input type="text" name="phone" placeholder="+212 6 12 34 56 78">
+                <h2>Facility</h2>
+                <select name="facility">
+                  <option value="foot">Football Field</option>
+                  <option value="basket">Basketball Court</option>
+                </select>
+                <h2>Preferred Date</h2>
+                <input type="date" name="date" placeholder="mm/dd/yyyy">
+                <h2>Duration</h2>
+                <input type="text" name="duration" placeholder="1 hour">
+                <button id="send">Confirm Booking 🎯</button>
+            </div>
+    </div>
+    <div class="overlay overlay2">
+      
+      <div class="overlayform border">
+                <div>
+                  <h1><span>Book a</span> Basketball Court</h1>
+                  <button class="close_overlay">X</button>
+                </div>
+                <h3>Fill in the form — we'll confirm your booking within 24 hours.</h3>
+                <h2>Full Name</h2>
+                <input type="text" name="user">
+                <h2>Email</h2>
+                <input type="email" name="email" placeholder="your@email.com">
+                <h2>Phone</h2>
+                <input type="text" name="phone" placeholder="+212 6 12 34 56 78">
+                <h2>Facility</h2>
+                <select name="facility">
+                  <option value="basket">Basketball Court</option>
+                  <option value="foot">Football Field</option>
+                </select>
+                <h2>Preferred Date</h2>
+                <input type="date" name="date" placeholder="mm/dd/yyyy">
+                <h2>Duration</h2>
+                <input type="text" name="duration" placeholder="1 hour">
+                <button id="send">Confirm Booking 🎯</button>
+            </div>
+    </div>
+    <script src="navfooter.js"></script>
+    <script>
+      $(document).ready(function(){
+        $(".sub_field").click(function(){
+          $(".overlay1").css("display", "flex");
+        });
+        $(".sub_court").click(function(){
+          $(".overlay2").css("display", "flex");
+        });
+        $(".close_overlay").click(function(){
+          $(".overlay").css("display", "none");
+        });
+      });
+    </script>
+  </body>
+</html>
